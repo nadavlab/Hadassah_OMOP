@@ -129,6 +129,12 @@ dmypy.json
 .pyre/
 
 .gitignore
+
+
 observation.csv
-38.csv
-27.csv
+table6.csv
+CONCEPT_ICD9.csv
+new_table.csv
+table89.csv
+values to condition table eng only.csv
+valuse to condition without icd9.csv
