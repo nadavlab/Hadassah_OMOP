@@ -18,11 +18,14 @@ department = table["Department"].drop_duplicates()
 data=[]
 care_site_id = initial_index
 place_of_service_concept_id = inpatient_visit_concept_id
+location_id = ''
+care_site_source_value = ''
+place_of_service_source_value = ''
 for i, department_name in department.items():
-    data.append([care_site_id, department_name, place_of_service_concept_id])
+    data.append([care_site_id, department_name, place_of_service_concept_id,location_id,care_site_source_value, place_of_service_source_value ])
     care_site_id += 1
 
-df_result = pd.DataFrame(data, columns=["care_site_id" , "care_site_name","place_of_service_concept_id"])
+df_result = pd.DataFrame(data, columns=["care_site_id" , "care_site_name","place_of_service_concept_id","location_id", "care_site_source_value", "place_of_service_source_value"])
 
 df_result.to_csv('care_site.csv', encoding='utf-8', index=False)
 
