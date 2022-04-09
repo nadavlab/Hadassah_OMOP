@@ -5,7 +5,7 @@ import os
 
 
 user = 'postgres'
-password = 'ayalonA3'
+password = ''
 hostname = '132.72.65.168'
 database_name = 'Hadassah'
 
