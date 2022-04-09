@@ -22,7 +22,7 @@ index=1
 inpatient_visit_concept_id = 9201
 EHR_concept_id = 32817
 
-for index_row, row in source_table.iterrows():
+for index_row, row in source_table[1:8].iterrows():
     if(float(row["Event_baznat"]) and not numpy.isnan(row["Event_baznat"])):
         visit_occurrence_id=int(row["Event_baznat"])
     if (float(row[0])and not numpy.isnan(row["Event_baznat"])):
@@ -35,12 +35,12 @@ for index_row, row in source_table.iterrows():
         else:
             date_start = datetime.strptime(row["Cham_Hosp_Entry_Date"] , '%d/%m/%Y %H:%M:%S')
             visit_start_date = date_start.date()
-            visit_start_datetime = row["Cham_Hosp_Entry_Date"]
+            visit_start_datetime = date_start
 
     else:
         date_start = datetime.strptime(row["HOSP_ENTRY_DATE"] , '%d/%m/%Y %H:%M:%S')
         visit_start_date = date_start.date()
-        visit_start_datetime = row["HOSP_ENTRY_DATE"]
+        visit_start_datetime = date_start
 
 
     if type(row["HOSP_EXIT_DATE"])!=str and math.isnan(row["HOSP_EXIT_DATE"]) :
@@ -50,11 +50,11 @@ for index_row, row in source_table.iterrows():
         else:
             date_end = datetime.strptime(row["Cham_Hosp_Exit_Date"] , '%d/%m/%Y %H:%M:%S')
             visit_end_date = date_end.date()
-            visit_end_datetime = row["Cham_Hosp_Exit_Date"]
+            visit_end_datetime = date_end
     else :
         date_end = datetime.strptime(row["HOSP_EXIT_DATE"] , '%d/%m/%Y %H:%M:%S')
         visit_end_date = date_end.date()
-        visit_end_datetime = row["HOSP_EXIT_DATE"]
+        visit_end_datetime = date_end
 
     #EHR
     visit_type_concept_id = EHR_concept_id
