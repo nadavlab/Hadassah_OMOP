@@ -24,14 +24,14 @@ for index_row, row in source_table.iterrows():
 
     visit_detail_concept_id=InpatientVisit_concept_id
     date_start = datetime.strptime(row["Department_Entry_Date"] , '%d/%m/%Y %H:%M')
-    visit_detail_start_date = date_start.__str__()
+    visit_detail_start_date = date_start.date()
     if date_start :
-        visit_detail_start_datetime = str(date_start.day) + '/' + str(date_start.month) + '/' + str(date_start.year)
+        visit_detail_start_datetime = date_start
     if row[5] !='-1':
         date_end = datetime.strptime(row["Department_Exit_Date"] , '%d/%m/%Y %H:%M')
-        visit_detail_end_date = date_end.__str__()
+        visit_detail_end_date = date_end.date()
         if date_end:
-            visit_detail_end_datetime = str(date_end.day)+'/'+str(date_end.month)+'/'+str(date_end.year)
+            visit_detail_end_datetime = date_end
     else:
         visit_detail_end_date = ''
         visit_detail_end_datetime=''
