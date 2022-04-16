@@ -5,7 +5,7 @@ source_table = pd.read_csv("6.csv")
 table_89_for_date = pd.read_csv("89.csv")
 concepts_icd_table = pd.read_csv("concepts_icd9.csv")
 concept_Yishay_table = pd.read_csv("YS_28_03_22.csv")
-#visit_detait_table = pd.read_csv("visit_detail.csv")
+visit_detait_table = pd.read_csv("visit_detail.csv")
 data = []
 index = 1
 
@@ -23,8 +23,8 @@ for index_row, row in source_table.iterrows():
     date_start = datetime.strptime(
         row_for_date['HOSP_ENTRY_DATE'].values[0], '%d/%m/%Y %H:%M:%S')
     condition_start_date = date_start.date()
-    condition_start_date = condition_start_date.strftime("%d/%m/%Y")
-    condition_start_datetime = row_for_date['HOSP_ENTRY_DATE'].values[0]
+    condition_start_datetime = date_start
+    condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
     condition_end_date = ""
     condition_end_datetime = ""
 
@@ -34,15 +34,15 @@ for index_row, row in source_table.iterrows():
     provider_id = ""
 
     visit_occurrence_id = row[1]  # event_baznat
-    #list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
+    list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
     visit_detail_id = ""
-    # if list_of_visits.shape[0] != 1 and not list_of_visits.empty:
-    #     row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_date']
-    #                                       == condition_start_date]
-    #     if not row_of_visit.empty:
-    #         visit_detail_id = row_of_visit['visit_detail_id'].values[0]
-    # elif not list_of_visits.empty:
-    #     visit_detail_id = list_of_visits['visit_detail_id'].values[0]
+    if list_of_visits.shape[0] != 1 and not list_of_visits.empty:
+        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_datetime']
+                                          == condition_start_datetime_string]
+        if not row_of_visit.empty:
+            visit_detail_id = row_of_visit['visit_detail_id'].values[0]
+    elif not list_of_visits.empty:
+        visit_detail_id = list_of_visits['visit_detail_id'].values[0]
 
     condition_source_value = row[4]
     condition_source_concept_id = ""
@@ -79,8 +79,8 @@ for index_row, row in source_table.iterrows():
     date_start = datetime.strptime(
         row_for_date['HOSP_ENTRY_DATE'].values[0], '%d/%m/%Y %H:%M:%S')
     condition_start_date = date_start.date()
-    condition_start_date = condition_start_date.strftime("%d/%m/%Y")
-    condition_start_datetime = row_for_date['HOSP_ENTRY_DATE'].values[0]
+    condition_start_datetime = date_start
+    condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
     condition_end_date = ""
     condition_end_datetime = ""
 
@@ -93,8 +93,8 @@ for index_row, row in source_table.iterrows():
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
     visit_detail_id = ""
     if list_of_visits.shape[0] != 1 and not list_of_visits.empty:
-        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_date']
-                                          == condition_start_date]
+        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_datetime']
+                                          == condition_start_datetime_string]
         if not row_of_visit.empty:
             visit_detail_id = row_of_visit['visit_detail_id'].values[0]
     elif not list_of_visits.empty:
@@ -131,8 +131,8 @@ for index_row, row in source_table.iterrows():
 
     date_start = datetime.strptime(row[14], '%d/%m/%Y %H:%M:%S')
     condition_start_date = date_start.date()
-    condition_start_date = condition_start_date.strftime("%d/%m/%Y")
-    condition_start_datetime = row[14]
+    condition_start_datetime = date_start
+    condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
     condition_end_date = ""
     condition_end_datetime = ""
 
@@ -146,8 +146,8 @@ for index_row, row in source_table.iterrows():
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
     try:
         if list_of_visits.shape[0] != 1 and not list_of_visits.empty:
-            row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_date']
-                                              == condition_start_date]
+            row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_datetime']
+                                              == condition_start_datetime_string]
             if not row_of_visit.empty:
                 visit_detail_id = row_of_visit['visit_detail_id'].values[0]
         elif not list_of_visits.empty:
@@ -189,8 +189,8 @@ for index_row, row in source_table.iterrows():
 
     date_start = datetime.strptime(row[14], '%m/%d/%Y %H:%M:%S %p')
     condition_start_date = date_start.date()
-    condition_start_date = condition_start_date.strftime("%d/%m/%Y")
-    condition_start_datetime = row[14]
+    condition_start_datetime = date_start
+    condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
     condition_end_date = ""
     condition_end_datetime = ""
 
@@ -204,8 +204,8 @@ for index_row, row in source_table.iterrows():
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
     if list_of_visits.shape[0] != 1 and not list_of_visits.empty:
-        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_date']
-                                          == condition_start_date]
+        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_datetime']
+                                          == condition_start_datetime_string]
         if not row_of_visit.empty:
             visit_detail_id = row_of_visit['visit_detail_id'].values[0]
     elif not list_of_visits.empty:
@@ -242,8 +242,8 @@ for index_row, row in source_table.iterrows():
 
     date_start = datetime.strptime(row[14], '%m/%d/%Y %H:%M:%S %p')
     condition_start_date = date_start.date()
-    condition_start_date = condition_start_date.strftime("%d/%m/%Y")
-    condition_start_datetime = row[14]
+    condition_start_datetime = date_start
+    condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
     condition_end_date = ""
     condition_end_datetime = ""
 
@@ -257,8 +257,8 @@ for index_row, row in source_table.iterrows():
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
     if list_of_visits.shape[0] != 1 and not list_of_visits.empty:
-        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_date']
-                                          == condition_start_date]
+        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_datetime']
+                                          == condition_start_datetime_string]
         if not row_of_visit.empty:
             visit_detail_id = row_of_visit['visit_detail_id'].values[0]
     elif not list_of_visits.empty:
@@ -296,8 +296,8 @@ for index_row, row in source_table.iterrows():
 
     date_start = datetime.strptime(row[14], '%m/%d/%Y %H:%M:%S %p')
     condition_start_date = date_start.date()
-    condition_start_date = condition_start_date.strftime("%d/%m/%Y")
-    condition_start_datetime = row[14]
+    condition_start_datetime = date_start
+    condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
     condition_end_date = ""
     condition_end_datetime = ""
 
@@ -311,8 +311,8 @@ for index_row, row in source_table.iterrows():
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
     if list_of_visits.shape[0] != 1 and not list_of_visits.empty:
-        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_date']
-                                          == condition_start_date]
+        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_datetime']
+                                          == condition_start_datetime_string]
         if not row_of_visit.empty:
             visit_detail_id = row_of_visit['visit_detail_id'].values[0]
     elif not list_of_visits.empty:
@@ -348,8 +348,8 @@ for index_row, row in source_table.iterrows():
 
     date_start = datetime.strptime(row[14], '%m/%d/%Y %H:%M:%S %p')
     condition_start_date = date_start.date()
-    condition_start_date = condition_start_date.strftime("%d/%m/%Y")
-    condition_start_datetime = row[14]
+    condition_start_datetime = date_start
+    condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
     condition_end_date = ""
     condition_end_datetime = ""
 
@@ -363,8 +363,8 @@ for index_row, row in source_table.iterrows():
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
     if list_of_visits.shape[0] != 1 and not list_of_visits.empty:
-        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_date']
-                                          == condition_start_date]
+        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_datetime']
+                                          == condition_start_datetime_string]
         if not row_of_visit.empty:
             visit_detail_id = row_of_visit['visit_detail_id'].values[0]
     elif not list_of_visits.empty:
@@ -401,8 +401,8 @@ for index_row, row in source_table.iterrows():
 
     date_start = datetime.strptime(row[15], '%m/%d/%Y %H:%M:%S %p')
     condition_start_date = date_start.date()
-    condition_start_date = condition_start_date.strftime("%d/%m/%Y")
-    condition_start_datetime = row[15]
+    condition_start_datetime = date_start
+    condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
     condition_end_date = ""
     condition_end_datetime = ""
 
@@ -416,8 +416,8 @@ for index_row, row in source_table.iterrows():
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
     if list_of_visits.shape[0] != 1 and not list_of_visits.empty:
-        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_date']
-                                          == condition_start_date]
+        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_datetime']
+                                          == condition_start_datetime_string]
         if not row_of_visit.empty:
             visit_detail_id = row_of_visit['visit_detail_id'].values[0]
     elif not list_of_visits.empty:
@@ -454,8 +454,8 @@ for index_row, row in source_table.iterrows():
 
     date_start = datetime.strptime(row[15], '%d/%m/%Y %H:%M:%S')
     condition_start_date = date_start.date()
-    condition_start_date = condition_start_date.strftime("%d/%m/%Y")
-    condition_start_datetime = row[15]
+    condition_start_datetime = date_start
+    condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
     condition_end_date = ""
     condition_end_datetime = ""
 
@@ -469,8 +469,8 @@ for index_row, row in source_table.iterrows():
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
     if list_of_visits.shape[0] != 1 and not list_of_visits.empty:
-        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_date']
-                                          == condition_start_date]
+        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_datetime']
+                                          == condition_start_datetime_string]
         if not row_of_visit.empty:
             visit_detail_id = row_of_visit['visit_detail_id'].values[0]
     elif not list_of_visits.empty:
@@ -507,8 +507,8 @@ for index_row, row in source_table.iterrows():
 
     date_start = datetime.strptime(row[14], '%d/%m/%Y %H:%M:%S')
     condition_start_date = date_start.date()
-    condition_start_date = condition_start_date.strftime("%d/%m/%Y")
-    condition_start_datetime = row[14]
+    condition_start_datetime = date_start
+    condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
     condition_end_date = ""
     condition_end_datetime = ""
 
@@ -522,8 +522,8 @@ for index_row, row in source_table.iterrows():
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
     if list_of_visits.shape[0] != 1 and not list_of_visits.empty:
-        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_date']
-                                          == condition_start_date]
+        row_of_visit = list_of_visits.loc[list_of_visits['visit_detail_start_datetime']
+                                          == condition_start_datetime_string]
         if not row_of_visit.empty:
             visit_detail_id = row_of_visit['visit_detail_id'].values[0]
     elif not list_of_visits.empty:
