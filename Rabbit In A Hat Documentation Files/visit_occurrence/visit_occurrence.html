@@ -1,0 +1,232 @@
+<h2>Table name: visit_occurrence</h2>
+
+<h3>Reading from book1.csv</h3>
+
+<img src="html_files/image1.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td>event_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>﻿id_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Inpatient Visit concept id 9201</td>
+	</tr>
+	<tr>
+		<td>visit_start_date</td>
+		<td>hosp_entry_date</td>
+		<td></td>
+		<td>Date and time - DD/MM/YYYY HH:MM:SS</td>
+	</tr>
+	<tr>
+		<td>visit_start_datetime</td>
+		<td>hosp_entry_date</td>
+		<td></td>
+		<td>Only date DD/MM/YYYY</td>
+	</tr>
+	<tr>
+		<td>visit_end_date</td>
+		<td>hosp_exit_date</td>
+		<td></td>
+		<td>Date and time - DD/MM/YYYY HH:MM:SS</td>
+	</tr>
+	<tr>
+		<td>visit_end_datetime</td>
+		<td>hosp_exit_date</td>
+		<td></td>
+		<td>Only date DD/MM/YYYY</td>
+	</tr>
+	<tr>
+		<td>visit_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>EHR_concept_id 32817</td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td>Not know!</td>
+	</tr>
+	<tr>
+		<td>care_site_id</td>
+		<td></td>
+		<td></td>
+		<td>Based by the care_site table and event baznat.</td>
+	</tr>
+	<tr>
+		<td>visit_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>visit_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>admitted_from_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>admitted_from_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>discharged_to_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>discharged_to_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>preceding_visit_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+</table>
+
+<h3>Reading from 92.csv</h3>
+
+<img src="html_files/image2.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Inpatient Visit concept id 9201</td>
+	</tr>
+	<tr>
+		<td>visit_start_date</td>
+		<td></td>
+		<td></td>
+		<td>Date and time - DD/MM/YYYY HH:MM:SS</td>
+	</tr>
+	<tr>
+		<td>visit_start_datetime</td>
+		<td></td>
+		<td></td>
+		<td>Only date DD/MM/YYYY</td>
+	</tr>
+	<tr>
+		<td>visit_end_date</td>
+		<td></td>
+		<td></td>
+		<td>Date and time - DD/MM/YYYY HH:MM:SS</td>
+	</tr>
+	<tr>
+		<td>visit_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td>Only date DD/MM/YYYY</td>
+	</tr>
+	<tr>
+		<td>visit_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>EHR_concept_id 32817</td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td>Not know!</td>
+	</tr>
+	<tr>
+		<td>care_site_id</td>
+		<td>department</td>
+		<td></td>
+		<td>Based by the care_site table and event baznat.</td>
+	</tr>
+	<tr>
+		<td>visit_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>visit_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>admitted_from_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>admitted_from_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>discharged_to_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>discharged_to_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>preceding_visit_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+</table>
+
