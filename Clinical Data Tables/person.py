@@ -14,14 +14,14 @@ for index_row, row in source_table.iterrows():
         year_of_birth = row[1]
         month_of_birth = None
         day_of_birth = None
-        race_concept_id = None
-        ethnicity_concept_id = None
+        race_concept_id = 0
+        ethnicity_concept_id = 0
 
         data.append([person_id, gender_concept_id, year_of_birth, month_of_birth, day_of_birth, race_concept_id,
                      ethnicity_concept_id])
 
 df_result = pd.DataFrame(data, columns=['person_id', 'gender_concept_id', 'year_of_birth', 'month_of_birth',
-                                            'day_of_birth', 'race_concept_id', 'ethnicity_concept_id'])
+                                'day_of_birth', 'race_concept_id', 'ethnicity_concept_id'])
 
 df_result.to_csv('person1.csv', encoding='utf-8', index=False)
 
@@ -39,13 +39,12 @@ for index_row, row in source_table.iterrows():
         year_of_birth = row[1]
         month_of_birth = row[2]
         day_of_birth = row[3]
-        race_concept_id = None
-        ethnicity_concept_id = None
+        race_concept_id = 0
+        ethnicity_concept_id = 0
 
-        data2.append([person_id, gender_concept_id, year_of_birth, month_of_birth, day_of_birth, race_concept_id,ethnicity_concept_id])
-
-df_result = pd.DataFrame(data, columns=['person_id', 'gender_concept_id', 'year_of_birth', 'month_of_birth',
-                                            'day_of_birth', 'race_concept_id', 'ethnicity_concept_id'])
+        data2.append([person_id, gender_concept_id, year_of_birth, month_of_birth, day_of_birth, race_concept_id,
+                     ethnicity_concept_id])
+df_result = pd.DataFrame(data2, columns=['person_id', 'gender_concept_id', 'year_of_birth', 'month_of_birth', 'day_of_birth', 'race_concept_id', 'ethnicity_concept_id'])
 
 df_result.to_csv('person2.csv', encoding='utf-8', index=False)
 
