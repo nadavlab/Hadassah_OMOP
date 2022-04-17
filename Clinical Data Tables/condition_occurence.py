@@ -105,7 +105,8 @@ for index_row, row in source_table.iterrows():
     if pd.notna(row[3]):
         row_for_concept = concepts_icd_table.loc[concepts_icd_table['concept_code'] == row[3]]
         if not row_for_concept.empty:
-            condition_source_concept_id = row_for_concept['concept_id'].values[0]
+            if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
+                condition_source_concept_id = row_for_concept['concept_id'].values[0]
 
     if condition_source_concept_id and not condition_concept_id:
         condition_concept_id = condition_source_concept_id
@@ -160,7 +161,8 @@ for index_row, row in source_table.iterrows():
     if pd.notna(row[11]):
         row_for_concept = concepts_icd_table.loc[concepts_icd_table['concept_code'] == row[11]]
         if not row_for_concept.empty:
-            condition_source_concept_id = row_for_concept['concept_id'].values[0]
+            if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
+                condition_source_concept_id = row_for_concept['concept_id'].values[0]
     if condition_source_concept_id and not condition_concept_id:
         condition_concept_id = condition_source_concept_id
 
@@ -216,7 +218,8 @@ for index_row, row in source_table.iterrows():
     if pd.notna(row[10]):
         row_for_concept = concepts_icd_table.loc[concepts_icd_table['concept_code'] == row[11]]
         if not row_for_concept.empty:
-            condition_source_concept_id = row_for_concept['concept_id'].values[0]
+            if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
+                condition_source_concept_id = row_for_concept['concept_id'].values[0]
     if condition_source_concept_id and not condition_concept_id:
         condition_concept_id = condition_source_concept_id
 
@@ -269,7 +272,8 @@ for index_row, row in source_table.iterrows():
     if pd.notna(row[10]):
         row_for_concept = concepts_icd_table.loc[concepts_icd_table['concept_code'] == row[11]]
         if not row_for_concept.empty:
-            condition_source_concept_id = row_for_concept['concept_id'].values[0]
+            if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
+                condition_source_concept_id = row_for_concept['concept_id'].values[0]
     if condition_source_concept_id and not condition_concept_id:
         condition_concept_id = condition_source_concept_id
 
@@ -323,7 +327,8 @@ for index_row, row in source_table.iterrows():
     if pd.notna(row[11]):
         row_for_concept = concepts_icd_table.loc[concepts_icd_table['concept_code'] == row[11]]
         if not row_for_concept.empty:
-            condition_source_concept_id = row_for_concept['concept_id'].values[0]
+            if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
+                condition_source_concept_id = row_for_concept['concept_id'].values[0]
     if condition_source_concept_id and not condition_concept_id:
         condition_concept_id = condition_source_concept_id
 
@@ -375,7 +380,8 @@ for index_row, row in source_table.iterrows():
     if pd.notna(row[10]):
         row_for_concept = concepts_icd_table.loc[concepts_icd_table['concept_code'] == row[11]]
         if not row_for_concept.empty:
-            condition_source_concept_id = row_for_concept['concept_id'].values[0]
+            if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
+                condition_source_concept_id = row_for_concept['concept_id'].values[0]
     if condition_source_concept_id and not condition_concept_id:
         condition_concept_id = condition_source_concept_id
 
@@ -428,7 +434,8 @@ for index_row, row in source_table.iterrows():
     if pd.notna(row[11]):
         row_for_concept = concepts_icd_table.loc[concepts_icd_table['concept_code'] == row[11]]
         if not row_for_concept.empty:
-            condition_source_concept_id = row_for_concept['concept_id'].values[0]
+            if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
+                condition_source_concept_id = row_for_concept['concept_id'].values[0]
     if condition_source_concept_id and not condition_concept_id:
         condition_concept_id = condition_source_concept_id
 
@@ -481,7 +488,8 @@ for index_row, row in source_table.iterrows():
     if pd.notna(row[11]):
         row_for_concept = concepts_icd_table.loc[concepts_icd_table['concept_code'] == row[11]]
         if not row_for_concept.empty:
-            condition_source_concept_id = row_for_concept['concept_id'].values[0]
+            if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
+                condition_source_concept_id = row_for_concept['concept_id'].values[0]
     if condition_source_concept_id and not condition_concept_id:
         condition_concept_id = condition_source_concept_id
 
@@ -534,7 +542,8 @@ for index_row, row in source_table.iterrows():
     if pd.notna(row[10]):
         row_for_concept = concepts_icd_table.loc[concepts_icd_table['concept_code'] == row[11]]
         if not row_for_concept.empty:
-            condition_source_concept_id = row_for_concept['concept_id'].values[0]
+            if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
+                condition_source_concept_id = row_for_concept['concept_id'].values[0]
     if condition_source_concept_id and not condition_concept_id:
         condition_concept_id = condition_source_concept_id
 
