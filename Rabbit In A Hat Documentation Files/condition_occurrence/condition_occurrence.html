@@ -1,0 +1,1419 @@
+<h2>Table name: condition_occurrence</h2>
+
+<h3>Reading from 6.csv</h3>
+
+<img src="html_files/image1.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>condition_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>index run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>﻿id_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>from experts table or concepts_icd9</td>
+	</tr>
+	<tr>
+		<td>condition_start_date</td>
+		<td></td>
+		<td></td>
+		<td>datetime.date()</td>
+	</tr>
+	<tr>
+		<td>condition_start_datetime</td>
+		<td></td>
+		<td></td>
+		<td>record date or from table 89</td>
+	</tr>
+	<tr>
+		<td>condition_end_date</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817</td>
+	</tr>
+	<tr>
+		<td>condition_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td>event_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>from table visit_detail</td>
+	</tr>
+	<tr>
+		<td>condition_source_value</td>
+		<td>descripition</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_source_concept_id</td>
+		<td>code</td>
+		<td></td>
+		<td>check if the code has a match in the concept_icd9 table</td>
+	</tr>
+	<tr>
+		<td>condition_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Reading from visit_detail.csv</h3>
+
+<img src="html_files/image2.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>condition_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>index run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>from experts table or concepts_icd9</td>
+	</tr>
+	<tr>
+		<td>condition_start_date</td>
+		<td></td>
+		<td></td>
+		<td>datetime.date()</td>
+	</tr>
+	<tr>
+		<td>condition_start_datetime</td>
+		<td></td>
+		<td></td>
+		<td>record date or from table 89</td>
+	</tr>
+	<tr>
+		<td>condition_end_date</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817</td>
+	</tr>
+	<tr>
+		<td>condition_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td>from table visit_detail</td>
+	</tr>
+	<tr>
+		<td>condition_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>check if the code has a match in the concept_icd9 table</td>
+	</tr>
+	<tr>
+		<td>condition_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Reading from concepts_icd9.csv</h3>
+
+<img src="html_files/image3.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>condition_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>index run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_concept_id</td>
+		<td>concept_id</td>
+		<td></td>
+		<td>from experts table or concepts_icd9</td>
+	</tr>
+	<tr>
+		<td>condition_start_date</td>
+		<td></td>
+		<td></td>
+		<td>datetime.date()</td>
+	</tr>
+	<tr>
+		<td>condition_start_datetime</td>
+		<td></td>
+		<td></td>
+		<td>record date or from table 89</td>
+	</tr>
+	<tr>
+		<td>condition_end_date</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817</td>
+	</tr>
+	<tr>
+		<td>condition_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>from table visit_detail</td>
+	</tr>
+	<tr>
+		<td>condition_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>check if the code has a match in the concept_icd9 table</td>
+	</tr>
+	<tr>
+		<td>condition_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Reading from 80.csv</h3>
+
+<img src="html_files/image4.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>condition_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>index run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>﻿id_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>from experts table or concepts_icd9</td>
+	</tr>
+	<tr>
+		<td>condition_start_date</td>
+		<td></td>
+		<td></td>
+		<td>datetime.date()</td>
+	</tr>
+	<tr>
+		<td>condition_start_datetime</td>
+		<td>record_date</td>
+		<td></td>
+		<td>record date or from table 89</td>
+	</tr>
+	<tr>
+		<td>condition_end_date</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817</td>
+	</tr>
+	<tr>
+		<td>condition_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td>event_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>from table visit_detail</td>
+	</tr>
+	<tr>
+		<td>condition_source_value</td>
+		<td>name</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_source_concept_id</td>
+		<td>icd</td>
+		<td></td>
+		<td>check if the code has a match in the concept_icd9 table</td>
+	</tr>
+	<tr>
+		<td>condition_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Reading from 89.csv</h3>
+
+<img src="html_files/image5.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>condition_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>index run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>from experts table or concepts_icd9</td>
+	</tr>
+	<tr>
+		<td>condition_start_date</td>
+		<td></td>
+		<td></td>
+		<td>datetime.date()</td>
+	</tr>
+	<tr>
+		<td>condition_start_datetime</td>
+		<td></td>
+		<td></td>
+		<td>record date or from table 89</td>
+	</tr>
+	<tr>
+		<td>condition_end_date</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817</td>
+	</tr>
+	<tr>
+		<td>condition_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>from table visit_detail</td>
+	</tr>
+	<tr>
+		<td>condition_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>check if the code has a match in the concept_icd9 table</td>
+	</tr>
+	<tr>
+		<td>condition_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Reading from 74.csv</h3>
+
+<img src="html_files/image6.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>condition_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>index run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>﻿id_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>from experts table or concepts_icd9</td>
+	</tr>
+	<tr>
+		<td>condition_start_date</td>
+		<td></td>
+		<td></td>
+		<td>datetime.date()</td>
+	</tr>
+	<tr>
+		<td>condition_start_datetime</td>
+		<td>record_date</td>
+		<td></td>
+		<td>record date or from table 89</td>
+	</tr>
+	<tr>
+		<td>condition_end_date</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817</td>
+	</tr>
+	<tr>
+		<td>condition_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td>event_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>from table visit_detail</td>
+	</tr>
+	<tr>
+		<td>condition_source_value</td>
+		<td>name</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_source_concept_id</td>
+		<td>icd</td>
+		<td></td>
+		<td>check if the code has a match in the concept_icd9 table</td>
+	</tr>
+	<tr>
+		<td>condition_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Reading from 56.csv</h3>
+
+<img src="html_files/image7.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>condition_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>index run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>﻿id_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>from experts table or concepts_icd9</td>
+	</tr>
+	<tr>
+		<td>condition_start_date</td>
+		<td></td>
+		<td></td>
+		<td>datetime.date()</td>
+	</tr>
+	<tr>
+		<td>condition_start_datetime</td>
+		<td>record_date</td>
+		<td></td>
+		<td>record date or from table 89</td>
+	</tr>
+	<tr>
+		<td>condition_end_date</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817</td>
+	</tr>
+	<tr>
+		<td>condition_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td>event_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>from table visit_detail</td>
+	</tr>
+	<tr>
+		<td>condition_source_value</td>
+		<td>name</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_source_concept_id</td>
+		<td>icd</td>
+		<td></td>
+		<td>check if the code has a match in the concept_icd9 table</td>
+	</tr>
+	<tr>
+		<td>condition_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Reading from 72.csv</h3>
+
+<img src="html_files/image8.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>condition_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>index run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>﻿id_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>from experts table or concepts_icd9</td>
+	</tr>
+	<tr>
+		<td>condition_start_date</td>
+		<td></td>
+		<td></td>
+		<td>datetime.date()</td>
+	</tr>
+	<tr>
+		<td>condition_start_datetime</td>
+		<td>record_date</td>
+		<td></td>
+		<td>record date or from table 89</td>
+	</tr>
+	<tr>
+		<td>condition_end_date</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817</td>
+	</tr>
+	<tr>
+		<td>condition_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td>event_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>from table visit_detail</td>
+	</tr>
+	<tr>
+		<td>condition_source_value</td>
+		<td>name</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_source_concept_id</td>
+		<td>icd</td>
+		<td></td>
+		<td>check if the code has a match in the concept_icd9 table</td>
+	</tr>
+	<tr>
+		<td>condition_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Reading from 63.csv</h3>
+
+<img src="html_files/image9.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>condition_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>index run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>﻿id_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>from experts table or concepts_icd9</td>
+	</tr>
+	<tr>
+		<td>condition_start_date</td>
+		<td></td>
+		<td></td>
+		<td>datetime.date()</td>
+	</tr>
+	<tr>
+		<td>condition_start_datetime</td>
+		<td>record_date</td>
+		<td></td>
+		<td>record date or from table 89</td>
+	</tr>
+	<tr>
+		<td>condition_end_date</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817</td>
+	</tr>
+	<tr>
+		<td>condition_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td>event_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>from table visit_detail</td>
+	</tr>
+	<tr>
+		<td>condition_source_value</td>
+		<td>name</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_source_concept_id</td>
+		<td>icd</td>
+		<td></td>
+		<td>check if the code has a match in the concept_icd9 table</td>
+	</tr>
+	<tr>
+		<td>condition_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Reading from 28.csv</h3>
+
+<img src="html_files/image10.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>condition_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>index run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>﻿id_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>from experts table or concepts_icd9</td>
+	</tr>
+	<tr>
+		<td>condition_start_date</td>
+		<td></td>
+		<td></td>
+		<td>datetime.date()</td>
+	</tr>
+	<tr>
+		<td>condition_start_datetime</td>
+		<td>record_date</td>
+		<td></td>
+		<td>record date or from table 89</td>
+	</tr>
+	<tr>
+		<td>condition_end_date</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817</td>
+	</tr>
+	<tr>
+		<td>condition_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td>event_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>from table visit_detail</td>
+	</tr>
+	<tr>
+		<td>condition_source_value</td>
+		<td>name</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_source_concept_id</td>
+		<td>icd</td>
+		<td></td>
+		<td>check if the code has a match in the concept_icd9 table</td>
+	</tr>
+	<tr>
+		<td>condition_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Reading from 40.csv</h3>
+
+<img src="html_files/image11.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>condition_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>index run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>﻿id_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>from experts table or concepts_icd9</td>
+	</tr>
+	<tr>
+		<td>condition_start_date</td>
+		<td></td>
+		<td></td>
+		<td>datetime.date()</td>
+	</tr>
+	<tr>
+		<td>condition_start_datetime</td>
+		<td>record_date</td>
+		<td></td>
+		<td>record date or from table 89</td>
+	</tr>
+	<tr>
+		<td>condition_end_date</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817</td>
+	</tr>
+	<tr>
+		<td>condition_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td>event_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>from table visit_detail</td>
+	</tr>
+	<tr>
+		<td>condition_source_value</td>
+		<td>name</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_source_concept_id</td>
+		<td>icd</td>
+		<td></td>
+		<td>check if the code has a match in the concept_icd9 table</td>
+	</tr>
+	<tr>
+		<td>condition_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Reading from 79.csv</h3>
+
+<img src="html_files/image12.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>condition_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>index run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>﻿id_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>from experts table or concepts_icd9</td>
+	</tr>
+	<tr>
+		<td>condition_start_date</td>
+		<td></td>
+		<td></td>
+		<td>datetime.date()</td>
+	</tr>
+	<tr>
+		<td>condition_start_datetime</td>
+		<td>record_date</td>
+		<td></td>
+		<td>record date or from table 89</td>
+	</tr>
+	<tr>
+		<td>condition_end_date</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817</td>
+	</tr>
+	<tr>
+		<td>condition_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td>event_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>from table visit_detail</td>
+	</tr>
+	<tr>
+		<td>condition_source_value</td>
+		<td>name</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_source_concept_id</td>
+		<td>icd</td>
+		<td></td>
+		<td>check if the code has a match in the concept_icd9 table</td>
+	</tr>
+	<tr>
+		<td>condition_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<h3>Reading from 15.csv</h3>
+
+<img src="html_files/image13.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>condition_occurrence_id</td>
+		<td></td>
+		<td></td>
+		<td>index run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>﻿id_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>from experts table or concepts_icd9</td>
+	</tr>
+	<tr>
+		<td>condition_start_date</td>
+		<td></td>
+		<td></td>
+		<td>datetime.date()</td>
+	</tr>
+	<tr>
+		<td>condition_start_datetime</td>
+		<td></td>
+		<td></td>
+		<td>record date or from table 89</td>
+	</tr>
+	<tr>
+		<td>condition_end_date</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_end_datetime</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>32817</td>
+	</tr>
+	<tr>
+		<td>condition_status_concept_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stop_reason</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td>event_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>from table visit_detail</td>
+	</tr>
+	<tr>
+		<td>condition_source_value</td>
+		<td>descripition</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>condition_source_concept_id</td>
+		<td>code</td>
+		<td></td>
+		<td>check if the code has a match in the concept_icd9 table</td>
+	</tr>
+	<tr>
+		<td>condition_status_source_value</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
