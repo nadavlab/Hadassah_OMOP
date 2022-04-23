@@ -14,7 +14,7 @@ for index_row, row in source_table.iterrows():
     condition_occurrence_id = index
     person_id = row[0]
 
-    condition_concept_id = ""
+    condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[3]]
     if not row_for_concept_id.empty:
         condition_concept_id = row_for_concept_id['targetConceptId'].values[0]
@@ -52,7 +52,7 @@ for index_row, row in source_table.iterrows():
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
 
-    if condition_source_concept_id and not condition_concept_id:
+    if condition_source_concept_id and condition_concept_id==0:
         condition_concept_id = condition_source_concept_id
     condition_status_source_value = ""
 
@@ -70,7 +70,7 @@ for index_row, row in source_table.iterrows():
     condition_occurrence_id = index
     person_id = row[0]
 
-    condition_concept_id = ""
+    condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[3]]
     if not row_for_concept_id.empty:
         condition_concept_id = row_for_concept_id['targetConceptId'].values[0]
@@ -108,7 +108,7 @@ for index_row, row in source_table.iterrows():
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
 
-    if condition_source_concept_id and not condition_concept_id:
+    if condition_source_concept_id and condition_concept_id==0:
         condition_concept_id = condition_source_concept_id
     condition_status_source_value = ""
 
@@ -125,7 +125,7 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
-    condition_concept_id = ""
+    condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[11]]
     if not row_for_concept_id.empty:
         condition_concept_id = row_for_concept_id['targetConceptId'].values[0]
@@ -163,7 +163,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and not condition_concept_id:
+    if condition_source_concept_id and condition_concept_id==0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -184,7 +184,7 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
-    condition_concept_id = ""
+    condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[10]]
     if not row_for_concept_id.empty:
         condition_concept_id = row_for_concept_id['targetConceptId'].values[0]
@@ -220,7 +220,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and not condition_concept_id:
+    if condition_source_concept_id and condition_concept_id==0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -238,7 +238,7 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
-    condition_concept_id = ""
+    condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[10]]
     if not row_for_concept_id.empty:
         condition_concept_id = row_for_concept_id['targetConceptId'].values[0]
@@ -274,7 +274,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and not condition_concept_id:
+    if condition_source_concept_id and condition_concept_id==0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -293,7 +293,7 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
-    condition_concept_id = ""
+    condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[11]]
     if not row_for_concept_id.empty:
         condition_concept_id = row_for_concept_id['targetConceptId'].values[0]
@@ -329,7 +329,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and not condition_concept_id:
+    if condition_source_concept_id and condition_concept_id==0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -346,7 +346,7 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
-    condition_concept_id = ""
+    condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[10]]
     if not row_for_concept_id.empty:
         condition_concept_id = row_for_concept_id['targetConceptId'].values[0]
@@ -382,7 +382,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and not condition_concept_id:
+    if condition_source_concept_id and condition_concept_id==0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -400,7 +400,7 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
-    condition_concept_id = ""
+    condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[11]]
     if not row_for_concept_id.empty:
         condition_concept_id = row_for_concept_id['targetConceptId'].values[0]
@@ -436,7 +436,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and not condition_concept_id:
+    if condition_source_concept_id and condition_concept_id==0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -454,7 +454,7 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
-    condition_concept_id = ""
+    condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[11]]
     if not row_for_concept_id.empty:
         condition_concept_id = row_for_concept_id['targetConceptId'].values[0]
@@ -490,7 +490,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and not condition_concept_id:
+    if condition_source_concept_id and condition_concept_id==0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -508,7 +508,7 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
-    condition_concept_id = ""
+    condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[10]]
     if not row_for_concept_id.empty:
         condition_concept_id = row_for_concept_id['targetConceptId'].values[0]
@@ -544,7 +544,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and not condition_concept_id:
+    if condition_source_concept_id and condition_concept_id==0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -561,4 +561,4 @@ df_result = pd.DataFrame(data, columns=['condition_occurrence_id', 'person_id', 
                                         'condition_status_concept_id', 'stop_reason', 'provider_id', 'visit_occurrence_id', 'visit_detail_id',
                                         'condition_source_value', 'condition_source_concept_id', 'condition_status_source_value'])
 
-df_result.to_csv('condition_occurence.csv', encoding='utf-8', index=False)
+df_result.to_csv('condition_occurrence.csv', encoding='utf-8', index=False)
