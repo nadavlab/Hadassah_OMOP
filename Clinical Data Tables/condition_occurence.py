@@ -52,7 +52,7 @@ for index_row, row in source_table.iterrows():
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
 
-    if condition_source_concept_id and condition_concept_id==0:
+    if condition_source_concept_id and condition_concept_id == 0:
         condition_concept_id = condition_source_concept_id
     condition_status_source_value = ""
 
@@ -108,7 +108,7 @@ for index_row, row in source_table.iterrows():
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
 
-    if condition_source_concept_id and condition_concept_id==0:
+    if condition_source_concept_id and condition_concept_id == 0:
         condition_concept_id = condition_source_concept_id
     condition_status_source_value = ""
 
@@ -163,7 +163,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and condition_concept_id==0:
+    if condition_source_concept_id and condition_concept_id == 0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -220,7 +220,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and condition_concept_id==0:
+    if condition_source_concept_id and condition_concept_id == 0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -274,7 +274,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and condition_concept_id==0:
+    if condition_source_concept_id and condition_concept_id == 0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -329,7 +329,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and condition_concept_id==0:
+    if condition_source_concept_id and condition_concept_id == 0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -382,7 +382,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and condition_concept_id==0:
+    if condition_source_concept_id and condition_concept_id == 0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -436,7 +436,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and condition_concept_id==0:
+    if condition_source_concept_id and condition_concept_id == 0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -490,7 +490,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and condition_concept_id==0:
+    if condition_source_concept_id and condition_concept_id == 0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
@@ -544,7 +544,7 @@ for index_row, row in source_table.iterrows():
         if not row_for_concept.empty:
             if row_for_concept["vocabulary_id"].values[0] == "ICD9CM":
                 condition_source_concept_id = row_for_concept['concept_id'].values[0]
-    if condition_source_concept_id and condition_concept_id==0:
+    if condition_source_concept_id and condition_concept_id == 0:
         condition_concept_id = condition_source_concept_id
 
     condition_status_source_value = ""
