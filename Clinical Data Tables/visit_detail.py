@@ -11,6 +11,8 @@ import math
 import pandas as pd
 from datetime import datetime , date
 source_table = pd.read_csv("92.csv")
+visit_occurrence = pd.read_csv("89.csv")
+df_visit_occurrence = pd.DataFrame(visit_occurrence ,columns=['Event_baznat' , 'HOSP_ENTRY_DATE' , 'HOSP_EXIT_DATE'])
 data=[]
 index=1
 EHR_concept_id = 32817
@@ -33,8 +35,16 @@ for index_row, row in source_table.iterrows():
         if date_end:
             visit_detail_end_datetime = date_end
     else:
-        visit_detail_end_date = ''
-        visit_detail_end_datetime=''
+        match_visit_occurrence = df_visit_occurrence.loc[df_visit_occurrence['Event_baznat']==visit_occurrence_id]
+        if match_visit_occurrence.values.size != 0:
+            index = 0
+            while match_visit_occurrence["HOSP_ENTRY_DATE"].size > index and type(match_visit_occurrence["HOSP_EXIT_DATE"].values[index]) != float :
+                date_start_89 = datetime.strptime(match_visit_occurrence["HOSP_ENTRY_DATE"].values[index] , '%d/%m/%Y %H:%M:%S')
+                date_end_89 = datetime.strptime(match_visit_occurrence["HOSP_EXIT_DATE"].values[index] , '%d/%m/%Y %H:%M:%S')
+                if date_start_89<=date_start<=date_end_89:
+                    visit_detail_end_date = date_end_89.date()
+                    visit_detail_end_datetime = date_end_89
+                index+=1
     #EHR
     visit_detail_type_concept_id = EHR_concept_id
     provider_id = ''
@@ -54,10 +64,11 @@ for index_row, row in source_table.iterrows():
     preceding_visit_detail_id=''
     parent_visit_detail_id=''
 
-    data.append([visit_detail_id, person_id, visit_detail_concept_id,  visit_detail_start_date ,visit_detail_start_datetime,visit_detail_end_date,visit_detail_end_datetime,
-                 visit_detail_type_concept_id,provider_id,care_site_id,visit_detail_source_value,visit_detail_source_concept_id,admitted_from_concept_id,admitted_from_source_value,
-                 discharged_to_source_value, discharged_to_concept_id,preceding_visit_detail_id,parent_visit_detail_id,visit_occurrence_id   ])
-    index+=1
+    if(visit_detail_start_date and visit_detail_end_date):
+        data.append([visit_detail_id, person_id, visit_detail_concept_id,  visit_detail_start_date ,visit_detail_start_datetime,visit_detail_end_date,visit_detail_end_datetime,
+                     visit_detail_type_concept_id,provider_id,care_site_id,visit_detail_source_value,visit_detail_source_concept_id,admitted_from_concept_id,admitted_from_source_value,
+                     discharged_to_source_value, discharged_to_concept_id,preceding_visit_detail_id,parent_visit_detail_id,visit_occurrence_id   ])
+        index+=1
 
 df_result = pd.DataFrame(data, columns=['visit_detail_id', 'person_id', 'visit_detail_concept_id',  'visit_detail_start_date' ,'visit_detail_start_datetime','visit_detail_end_date','visit_detail_end_datetime',
                  'visit_detail_type_concept_id','provider_id','care_site_id','visit_detail_source_value','visit_detail_source_concept_id','admitted_from_concept_id','admitted_from_source_value',
