@@ -22,14 +22,14 @@ index=1
 inpatient_visit_concept_id = 9201
 EHR_concept_id = 32817
 
-for index_row, row in source_table[1:8].iterrows():
+for index_row, row in source_table.iterrows():
     if(float(row["Event_baznat"]) and not numpy.isnan(row["Event_baznat"])):
         visit_occurrence_id=int(row["Event_baznat"])
     if (float(row[0])and not numpy.isnan(row["Event_baznat"])):
         person_id=int(row[0])
     visit_concept_id=inpatient_visit_concept_id
     if type(row["HOSP_ENTRY_DATE"])!=str and math.isnan(row["HOSP_ENTRY_DATE"]):
-        if  type(row["Cham_Hosp_Entry_Date"])!=str and math.isnan(row["Cham_Hosp_Entry_Date"]):
+        if type(row["Cham_Hosp_Entry_Date"])!=str and math.isnan(row["Cham_Hosp_Entry_Date"]):
             visit_start_date = ''
             visit_start_datetime = ''
         else:
@@ -79,10 +79,11 @@ for index_row, row in source_table[1:8].iterrows():
     discharged_to_source_value = ''
     discharged_to_concept_id=''
     preceding_visit_occurrence_id=''
-    data.append([visit_occurrence_id, person_id, visit_concept_id,  visit_start_date ,visit_start_datetime,visit_end_date,visit_end_datetime,
-                 visit_type_concept_id,provider_id,care_site_id,visit_source_value,admitted_from_concept_id,admitted_from_source_value,
-                 discharged_to_source_value, discharged_to_concept_id])
-    index+=1
+    if(visit_start_date and visit_end_date):
+        data.append([visit_occurrence_id, person_id, visit_concept_id,  visit_start_date ,visit_start_datetime,visit_end_date,visit_end_datetime,
+                     visit_type_concept_id,provider_id,care_site_id,visit_source_value,admitted_from_concept_id,admitted_from_source_value,
+                     discharged_to_source_value, discharged_to_concept_id])
+        index+=1
 
 df_result = pd.DataFrame(data, columns=['visit_occurrence_id', 'person_id', 'visit_concept_id',  'visit_start_date' ,'visit_start_datetime','visit_end_date','visit_end_datetime',
                  'visit_type_concept_id','provider_id','care_site_id','visit_source_value','admitted_from_concept_id','admitted_from_source_value',
