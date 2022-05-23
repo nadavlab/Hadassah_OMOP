@@ -25,15 +25,17 @@ for index_row, row in source_table.iterrows():
     condition_start_date = date_start.date()
     condition_start_datetime = date_start
     condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
-    condition_end_date = ""
-    condition_end_datetime = ""
+    condition_end_date = condition_start_date
+    condition_end_datetime = condition_start_datetime
 
     condition_type_concept_id = 32817  # EHR record
     condition_status_concept_id = ""
     stop_reason = ""
     provider_id = ""
 
-    visit_occurrence_id = row[1]  # event_baznat
+    # TODO from visit_detail
+    visit_occurrence_id = ""
+
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
     visit_detail_id = ""
     if list_of_visits.shape[0] != 1 and not list_of_visits.empty:
@@ -81,8 +83,8 @@ for index_row, row in source_table.iterrows():
     condition_start_date = date_start.date()
     condition_start_datetime = date_start
     condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
-    condition_end_date = ""
-    condition_end_datetime = ""
+    condition_end_date = condition_start_date
+    condition_end_datetime = condition_start_datetime
 
     condition_type_concept_id = 32817  # EHR record
     condition_status_concept_id = ""
@@ -134,8 +136,8 @@ for index_row, row in source_table.iterrows():
     condition_start_date = date_start.date()
     condition_start_datetime = date_start
     condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
-    condition_end_date = ""
-    condition_end_datetime = ""
+    condition_end_date = condition_start_date
+    condition_end_datetime = condition_start_datetime
 
     condition_type_concept_id = 32817  # EHR record
     condition_status_concept_id = ""
@@ -193,8 +195,8 @@ for index_row, row in source_table.iterrows():
     condition_start_date = date_start.date()
     condition_start_datetime = date_start
     condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
-    condition_end_date = ""
-    condition_end_datetime = ""
+    condition_end_date = condition_start_date
+    condition_end_datetime = condition_start_datetime
 
     condition_type_concept_id = 32817  # EHR record
     condition_status_concept_id = ""
@@ -247,8 +249,8 @@ for index_row, row in source_table.iterrows():
     condition_start_date = date_start.date()
     condition_start_datetime = date_start
     condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
-    condition_end_date = ""
-    condition_end_datetime = ""
+    condition_end_date = condition_start_date
+    condition_end_datetime = condition_start_datetime
 
     condition_type_concept_id = 32817  # EHR record
     condition_status_concept_id = ""
@@ -302,8 +304,8 @@ for index_row, row in source_table.iterrows():
     condition_start_date = date_start.date()
     condition_start_datetime = date_start
     condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
-    condition_end_date = ""
-    condition_end_datetime = ""
+    condition_end_date = condition_start_date
+    condition_end_datetime = condition_start_datetime
 
     condition_type_concept_id = 32817  # EHR record
     condition_status_concept_id = ""
@@ -355,8 +357,8 @@ for index_row, row in source_table.iterrows():
     condition_start_date = date_start.date()
     condition_start_datetime = date_start
     condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
-    condition_end_date = ""
-    condition_end_datetime = ""
+    condition_end_date = condition_start_date
+    condition_end_datetime = condition_start_datetime
 
     condition_type_concept_id = 32817  # EHR record
     condition_status_concept_id = ""
@@ -409,8 +411,8 @@ for index_row, row in source_table.iterrows():
     condition_start_date = date_start.date()
     condition_start_datetime = date_start
     condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
-    condition_end_date = ""
-    condition_end_datetime = ""
+    condition_end_date = condition_start_date
+    condition_end_datetime = condition_start_datetime
 
     condition_type_concept_id = 32817  # EHR record
     condition_status_concept_id = ""
@@ -463,8 +465,8 @@ for index_row, row in source_table.iterrows():
     condition_start_date = date_start.date()
     condition_start_datetime = date_start
     condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
-    condition_end_date = ""
-    condition_end_datetime = ""
+    condition_end_date = condition_start_date
+    condition_end_datetime = condition_start_datetime
 
     condition_type_concept_id = 32817  # EHR record
     condition_status_concept_id = ""
@@ -517,8 +519,8 @@ for index_row, row in source_table.iterrows():
     condition_start_date = date_start.date()
     condition_start_datetime = date_start
     condition_start_datetime_string = date_start.strftime('%Y-%m-%d %H:%M:%S')
-    condition_end_date = ""
-    condition_end_datetime = ""
+    condition_end_date = condition_start_date
+    condition_end_datetime = condition_start_datetime
 
     condition_type_concept_id = 32817  # EHR record
     condition_status_concept_id = ""
