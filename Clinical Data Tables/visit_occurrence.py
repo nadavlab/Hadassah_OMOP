@@ -139,4 +139,4 @@ df_result = pd.DataFrame(data, columns=['visit_occurrence_id', 'person_id', 'vis
                  'visit_type_concept_id','provider_id','care_site_id','visit_source_value','admitted_from_concept_id','admitted_from_source_value',
                  'discharged_to_source_value', 'discharged_to_concept_id','preceding_visit_occurrence_id'])
 
-df_result.to_csv('visit_occurrence_1.csv', encoding='utf-8', index=False)
+df_result.to_csv('visit_occurrence.csv', encoding='utf-8', index=False)
