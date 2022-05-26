@@ -22,8 +22,9 @@ class DeathType(Enum):
 
 source_table = pd.read_csv("61.csv")
 data=[]
-inpatient_visit_concept_id = 9201
-EHR_concept_id = 32817
+
+### Concepts ####
+EHR_CONCEPT_ID = 32817
 
 
 for index_row, row in source_table.iterrows():
@@ -36,7 +37,7 @@ for index_row, row in source_table.iterrows():
 
     death_date = date.date()
     death_datetime = date
-    death_type_concept_id = EHR_concept_id
+    death_type_concept_id = EHR_CONCEPT_ID
     if row['סוג מוות'] == 'Intrauterine fetal death':
         cause_concept_id = DeathType.INTRAUTERINE_FETAL_DEATH.value
     elif row['סוג מוות'] == 'Fetal death due to termination of pregnancy':
