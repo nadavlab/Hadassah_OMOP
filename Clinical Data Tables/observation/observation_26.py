@@ -10,14 +10,14 @@ df_visit_detail_table = pd.DataFrame(visit_detail_table ,columns=['visit_detail_
 data = []
 index = 1
 EHR_concept_id = 32817
-
+#concept
 Number_of_previous_pregnancies = 4078008
-NumOfBirths_P = 0
-NumOfAbortions_A = 0
-NumOfEp_EP = 0
-NumOfCaesars_CS = 0
-NumOfLiveChildren_LC = 0
-VBAC = 0
+NumOfBirths_P = 118212000
+NumOfAbortions_A = 248989003
+NumOfEp_EP = 440537001
+NumOfCaesars_CS = 4092787
+NumOfLiveChildren_LC = 248991006
+VBAC = 237313003
 
 
 for index_row, row in source_table.iterrows():
@@ -68,7 +68,7 @@ for index_row, row in source_table.iterrows():
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
                      value_as_number, value_as_string, value_as_concept_id, qualifier_concept_id, unit_concept_id, provider_id, visit_occurrence_id, visit_detail_id,
                      observation_source_value, observation_source_concept_id, unit_source_value, qualifier_source_value, value_source_value, observation_event_id, obs_event_field_concept_id])
-
+        index += 1
     ############## NumOfBirths_P #############################
 
     if not math.isnan(row['NumOfBirths_P']):
@@ -77,7 +77,7 @@ for index_row, row in source_table.iterrows():
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
                      value_as_number, value_as_string, value_as_concept_id, qualifier_concept_id, unit_concept_id, provider_id, visit_occurrence_id, visit_detail_id,
                      observation_source_value, observation_source_concept_id, unit_source_value, qualifier_source_value, value_source_value, observation_event_id, obs_event_field_concept_id])
-
+        index += 1
     ############## NumOfAbortions_A #############################
     if not math.isnan(row['NumOfAbortions_A']):
         observation_concept_id = NumOfAbortions_A
@@ -85,7 +85,7 @@ for index_row, row in source_table.iterrows():
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
                      value_as_number, value_as_string, value_as_concept_id, qualifier_concept_id, unit_concept_id, provider_id, visit_occurrence_id, visit_detail_id,
                      observation_source_value, observation_source_concept_id, unit_source_value, qualifier_source_value, value_source_value, observation_event_id, obs_event_field_concept_id])
-
+        index += 1
     ############## NumOfEp_EP #############################
     if not math.isnan(row['NumOfEp_EP']):
         observation_concept_id = NumOfEp_EP
@@ -93,7 +93,7 @@ for index_row, row in source_table.iterrows():
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
                      value_as_number, value_as_string, value_as_concept_id, qualifier_concept_id, unit_concept_id, provider_id, visit_occurrence_id, visit_detail_id,
                      observation_source_value, observation_source_concept_id, unit_source_value, qualifier_source_value, value_source_value, observation_event_id, obs_event_field_concept_id])
-
+        index += 1
     ############## NumOfCaesars_CS #############################
     if not math.isnan(row['NumOfCaesars_CS']):
         observation_concept_id = NumOfCaesars_CS
@@ -101,7 +101,7 @@ for index_row, row in source_table.iterrows():
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
                      value_as_number, value_as_string, value_as_concept_id, qualifier_concept_id, unit_concept_id, provider_id, visit_occurrence_id, visit_detail_id,
                      observation_source_value, observation_source_concept_id, unit_source_value, qualifier_source_value, value_source_value, observation_event_id, obs_event_field_concept_id])
-
+        index += 1
     ############## NumOfLiveChildren_LC #############################
     if not math.isnan(row['NumOfLiveChildren_LC']):
         observation_concept_id = NumOfLiveChildren_LC
@@ -109,7 +109,7 @@ for index_row, row in source_table.iterrows():
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
                      value_as_number, value_as_string, value_as_concept_id, qualifier_concept_id, unit_concept_id, provider_id, visit_occurrence_id, visit_detail_id,
                      observation_source_value, observation_source_concept_id, unit_source_value, qualifier_source_value, value_source_value, observation_event_id, obs_event_field_concept_id])
-
+        index += 1
     ############## VBAC #############################
     if not math.isnan(row['VBAC']):
         observation_concept_id = VBAC
@@ -117,8 +117,7 @@ for index_row, row in source_table.iterrows():
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
                      value_as_number, value_as_string, value_as_concept_id, qualifier_concept_id, unit_concept_id, provider_id, visit_occurrence_id, visit_detail_id,
                      observation_source_value, observation_source_concept_id, unit_source_value, qualifier_source_value, value_source_value, observation_event_id, obs_event_field_concept_id])
-
-    index+=1
+        index += 1
 
 df_result = pd.DataFrame(data , columns=["observation_id", "person_id", "observation_concept_id", "observation_date", "observation_datetime", "observation_type_concept_id",
                  "value_as_number", "value_as_string", "value_as_concept_id", "qualifier_concept_id", "unit_concept_id", "provider_id", "visit_occurrence_id", "visit_detail_id",

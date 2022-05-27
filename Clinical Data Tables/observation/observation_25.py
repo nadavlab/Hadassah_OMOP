@@ -4,7 +4,7 @@ import math
 
 source_table = pd.read_csv("25.csv")
 
-visit_detail_table = pd.read_csv("../visit_detail.csv")
+visit_detail_table = pd.read_csv("../visit/visit_detail.csv")
 df_visit_detail_table = pd.DataFrame(visit_detail_table ,columns=['visit_detail_id', 'person_id','visit_occurrence_id', 'visit_detail_start_datetime', 'visit_detail_end_datetime'])
 
 data = []
@@ -13,7 +13,7 @@ EHR_concept_id = 32817
 Date_of_last_normal_period = 4088445
 Spontaneous = 4196694
 Fetus = 40567571
-Pregnancy_Age = 0 # need to change
+Pregnancy_Age = 0 # TODO!!!!
 
 for index_row, row in source_table.iterrows():
     observation_id = index
@@ -36,9 +36,9 @@ for index_row, row in source_table.iterrows():
         while match_visit_detail.values.shape[0] > index_visit_detail:
             date_start_vd = datetime.strptime(match_visit_detail.values[index_visit_detail][3] , '%Y-%m-%d %H:%M:%S')
             date_end_vd = datetime.strptime(match_visit_detail.values[index_visit_detail][4] , '%Y-%m-%d %H:%M:%S')
-            if date_start_vd<=observation_datetime<=date_end_vd:
+            if date_start_vd <= observation_datetime <= date_end_vd:
                 visit_detail_id = match_visit_detail.values[index_visit_detail][0]
-            index_visit_detail+=1
+            index_visit_detail += 1
 
     else:
         visit_detail_id = ""
@@ -63,7 +63,7 @@ for index_row, row in source_table.iterrows():
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
                      value_as_number, value_as_string, value_as_concept_id, qualifier_concept_id, unit_concept_id, provider_id, visit_occurrence_id, visit_detail_id,
                      observation_source_value, observation_source_concept_id, unit_source_value, qualifier_source_value, value_source_value, observation_event_id, obs_event_field_concept_id])
-
+        index += 1
     ############## Spontaneous #############################
 
     if not math.isnan(row['Spontaneous']):
@@ -73,7 +73,7 @@ for index_row, row in source_table.iterrows():
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
                      value_as_number, value_as_string, value_as_concept_id, qualifier_concept_id, unit_concept_id, provider_id, visit_occurrence_id, visit_detail_id,
                      observation_source_value, observation_source_concept_id, unit_source_value, qualifier_source_value, value_source_value, observation_event_id, obs_event_field_concept_id])
-
+        index += 1
     ############## Fetus Count #############################
     if not math.isnan(row['Fetus_Count']):
         observation_concept_id = Fetus
@@ -82,7 +82,7 @@ for index_row, row in source_table.iterrows():
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
                      value_as_number, value_as_string, value_as_concept_id, qualifier_concept_id, unit_concept_id, provider_id, visit_occurrence_id, visit_detail_id,
                      observation_source_value, observation_source_concept_id, unit_source_value, qualifier_source_value, value_source_value, observation_event_id, obs_event_field_concept_id])
-
+        index += 1
     ############## Pregnancy Age #############################
     if row['Pregnancy_Age']:
         observation_concept_id = Pregnancy_Age
@@ -92,7 +92,7 @@ for index_row, row in source_table.iterrows():
                      value_as_number, value_as_string, value_as_concept_id, qualifier_concept_id, unit_concept_id, provider_id, visit_occurrence_id, visit_detail_id,
                      observation_source_value, observation_source_concept_id, unit_source_value, qualifier_source_value, value_source_value, observation_event_id, obs_event_field_concept_id])
 
-    index+=1
+        index += 1
 
 df_result = pd.DataFrame(data , columns=["observation_id", "person_id", "observation_concept_id", "observation_date", "observation_datetime", "observation_type_concept_id",
                  "value_as_number", "value_as_string", "value_as_concept_id", "qualifier_concept_id", "unit_concept_id", "provider_id", "visit_occurrence_id", "visit_detail_id",
