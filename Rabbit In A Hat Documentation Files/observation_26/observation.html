@@ -1,0 +1,141 @@
+<h2>Table name: observation</h2>
+
+<h3>Reading from 26.csv</h3>
+
+<img src="html_files/image1.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>observation_id</td>
+		<td></td>
+		<td></td>
+		<td>ID run</td>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>﻿id_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td>event_baznat</td>
+		<td></td>
+		<td>Check if the value exists in the target table visit_occurrence , if not set as None</td>
+	</tr>
+	<tr>
+		<td>observation_date</td>
+		<td>record_date</td>
+		<td></td>
+		<td>Only date DD/MM/YYYY</td>
+	</tr>
+	<tr>
+		<td>observation_datetime</td>
+		<td>record_date</td>
+		<td></td>
+		<td>Date and time - DD/MM/YYYY HH:MM:SS</td>
+	</tr>
+	<tr>
+		<td>observation_concept_id</td>
+		<td>numofpregnancies_g<br>numofbirths_p<br>numofabortions_a<br>numofep_ep<br>numofcaesars_cs<br>numoflivechildren_lc<br>vbac</td>
+		<td></td>
+		<td>Set NUMBER_OF_PREVIOUS_PREGNANCIES = 4078008<br>Set NUMBER_OF_BIRTHS_P = 118212000<br>Set NUMBER_OF_ABORTIONS_A = 248989003<br><br>Set NUMBER_OF_CAESARS_CS = 4092787<br>Set NUMBER_OF_LIVE_CHILDREN_LC = 248991006<br>Set VBAC = 237313003<br></td>
+	</tr>
+	<tr>
+		<td>value_as_number</td>
+		<td>numofpregnancies_g<br>numofbirths_p<br>numofabortions_a<br>numofep_ep<br>numofcaesars_cs<br>numoflivechildren_lc<br>vbac</td>
+		<td></td>
+		<td>Value from source table.</td>
+	</tr>
+	<tr>
+		<td>observation_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Set EHR_CONCEPT_ID = 32817</td>
+	</tr>
+	<tr>
+		<td>value_as_string</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>value_as_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>qualifier_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>unit_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>According to visit_detail_id</td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>According to visit_occuerrence id and time.</td>
+	</tr>
+	<tr>
+		<td>observation_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>observation_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>unit_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>qualifier_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>value_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>observation_event_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>obs_event_field_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+</table>
+
