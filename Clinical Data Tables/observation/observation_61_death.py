@@ -7,7 +7,7 @@ df_terms_table = pd.DataFrame(terms_table ,columns=['sourceCode' , 'targetConcep
 
 ### visit detail : ####
 visit_detail_table = pd.read_csv("visit_detail.csv")
-df_visit_detail_table = pd.DataFrame(visit_detail_table ,columns=['visit_detail_id', 'person_id','visit_occurrence_id', 'visit_detail_start_datetime', 'visit_detail_end_datetime'])
+df_visit_detail_table = pd.DataFrame(visit_detail_table ,columns=['visit_detail_id', 'person_id','visit_occurrence_id', 'visit_detail_start_datetime', 'visit_detail_end_datetime','care_site_id'])
 
 ### visit occurrence : ####
 visit_occurrence_table = pd.read_csv("../visit/visit_occurrence.csv")
@@ -39,6 +39,7 @@ for index_row, row in source_table.iterrows():
         visit_occurrence_id = ''
 
     visit_detail_id = ""
+    unit_concept_id = ""
     if visit_occurrence_id != '':
         match_visit_detail = df_visit_detail_table.loc[df_visit_detail_table['visit_occurrence_id'] == visit_occurrence_id]
         index_visit_detail = 0
@@ -48,12 +49,12 @@ for index_row, row in source_table.iterrows():
                 date_end_vd = datetime.strptime(match_visit_detail.values[index_visit_detail][4] , '%Y-%m-%d %H:%M:%S')
                 if date_start_vd<=observation_datetime<=date_end_vd:
                     visit_detail_id = match_visit_detail.values[index_visit_detail][0]
+                    unit_concept_id = match_visit_detail.values[index_visit_detail][5]
                 index_visit_detail+=1
 
     value_as_number = ''
     value_as_string = ''
     qualifier_concept_id = ""
-    unit_concept_id = ""
     provider_id = ""
     observation_source_value = ""
     observation_source_concept_id = ""
