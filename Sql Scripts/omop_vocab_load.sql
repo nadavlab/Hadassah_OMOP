@@ -40,6 +40,9 @@ last revised: 5 Dec 2014
 
 author:  Lee Evans
 
+export OMOP_SCHEMA='omop'
+export OMOP='host=localhost dbname=postgres user=postgres options=--search_path='$OMOP_SCHEMA
+psql "$OMOP" -f "OMOP CDM postgresql.sql"
 
 *************************/
 BEGIN;
@@ -54,13 +57,13 @@ TRUNCATE TABLE concept_ancestor CASCADE;
 TRUNCATE TABLE concept_relationship CASCADE;
 TRUNCATE TABLE drug_strength CASCADE;
 
-\copy CONCEPT FROM '\mimic-omop\extras\ayalon\CONCEPT.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
-\copy CONCEPT_CLASS FROM '\mimic-omop\extras\ayalon\CONCEPT_CLASS.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
-\copy VOCABULARY FROM '\mimic-omop\extras\ayalon\VOCABULARY.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
-\copy DOMAIN FROM '\mimic-omop\extras\ayalon\DOMAIN.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
-\copy RELATIONSHIP FROM '\mimic-omop\extras\ayalon\RELATIONSHIP.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
-\copy CONCEPT_SYNONYM FROM '\mimic-omop\extras\ayalon\CONCEPT_SYNONYM.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
-\copy CONCEPT_ANCESTOR FROM '\mimic-omop\extras\ayalon\CONCEPT_ANCESTOR.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
-\copy CONCEPT_RELATIONSHIP FROM '\mimic-omop\extras\ayalon\CONCEPT_RELATIONSHIP.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
-\copy DRUG_STRENGTH FROM '\mimic-omop\extras\ayalon\DRUG_STRENGTH.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
+\copy CONCEPT FROM 'csv_to_upload/CONCEPT.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
+\copy CONCEPT_CLASS FROM 'csv_to_upload/CONCEPT_CLASS.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
+\copy VOCABULARY FROM 'csv_to_upload/VOCABULARY.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
+\copy DOMAIN FROM 'csv_to_upload/DOMAIN.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
+\copy RELATIONSHIP FROM 'csv_to_upload/RELATIONSHIP.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
+\copy CONCEPT_SYNONYM FROM 'csv_to_upload/CONCEPT_SYNONYM.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
+\copy CONCEPT_ANCESTOR FROM 'csv_to_upload/CONCEPT_ANCESTOR.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
+\copy CONCEPT_RELATIONSHIP FROM 'csv_to_upload/CONCEPT_RELATIONSHIP.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
+\copy DRUG_STRENGTH FROM 'csv_to_upload/DRUG_STRENGTH.csv' WITH DELIMITER E'\t' CSV HEADER QUOTE E'\b' ;
 COMMIT;

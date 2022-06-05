@@ -1,10 +1,10 @@
 if (!require("remotes")) install.packages("remotes")
 
 # To install the master branch
-remotes::install_github("OHDSI/Achilles")
+install_github("OHDSI/Achilles")
 
 library(Achilles)
-# library(DatabaseConnector)
+library(DatabaseConnector)
 
 downloadJdbcDrivers(dbms = "postgresql", pathToDriver = "~/")
 
@@ -19,11 +19,11 @@ connectionDetails <- createConnectionDetails(
 
 
 achilles(connectionDetails,
-  cdmDatabaseSchema = "omop_cdm",
+  cdmDatabaseSchema = "omop_demo",
   resultsDatabaseSchema = "results",
-  scratchDatabaseSchema = "scratch",
-  numThreads = 1,
-  outputFolder = "output"
+  # scratchDatabaseSchema = "scratch",
+  # numThreads = 1,
+  outputFolder = "./Output"
 )
 
 
@@ -31,12 +31,12 @@ achilles(connectionDetails,
 createIndices(
   connectionDetails = connectionDetails,
   resultsDatabaseSchema = "results",
-  outputFolder = "output"
+  outputFolder = "./Output"
 )
 
 
 
-dropAllScratchTables(
-  connectionDetails = connectionDetails,
-  scratchDatabaseSchema = "scratch", numThreads = 5, outputFolder = "output"
-)
+# dropAllScratchTables(
+#   connectionDetails = connectionDetails,
+#   scratchDatabaseSchema = "scratch", numThreads = 5, outputFolder = "output/"
+# )

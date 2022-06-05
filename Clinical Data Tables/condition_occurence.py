@@ -5,9 +5,13 @@ source_table = pd.read_csv("6.csv")
 table_89_for_date = pd.read_csv("89.csv")
 concepts_icd_table = pd.read_csv("concepts_icd9.csv")
 concept_Yishay_table = pd.read_csv("YS_28_03_22.csv")
+visit_occurrence_table = pd.read_csv("visit_occurrence.csv")
 visit_detait_table = pd.read_csv("visit_detail.csv")
+
 data = []
 index = 1
+
+#check if person id is present in table person!
 
 for index_row, row in source_table.iterrows():
 
@@ -33,8 +37,15 @@ for index_row, row in source_table.iterrows():
     stop_reason = ""
     provider_id = ""
 
-    # TODO from visit_detail
     visit_occurrence_id = ""
+    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
+    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
+        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
+                                          == condition_start_datetime_string]
+        if not row_of_visit_occurrence.empty:
+            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
+    elif not list_of_visit_occurrence.empty:
+        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
 
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
     visit_detail_id = ""
@@ -91,7 +102,17 @@ for index_row, row in source_table.iterrows():
     stop_reason = ""
     provider_id = ""
 
-    visit_occurrence_id = row[1]  # event_baznat
+    visit_occurrence_id = ""
+    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
+    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
+        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
+                                          == condition_start_datetime_string]
+        if not row_of_visit_occurrence.empty:
+            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
+    elif not list_of_visit_occurrence.empty:
+        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+
+    
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
     visit_detail_id = ""
     if list_of_visits.shape[0] != 1 and not list_of_visits.empty:
@@ -144,7 +165,17 @@ for index_row, row in source_table.iterrows():
     stop_reason = ""
     provider_id = ""
 
-    visit_occurrence_id = row[1]  # event_baznat
+    visit_occurrence_id = ""
+    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
+    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
+        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
+                                          == condition_start_datetime_string]
+        if not row_of_visit_occurrence.empty:
+            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
+    elif not list_of_visit_occurrence.empty:
+        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+
+    
     visit_detail_id = ""
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
     try:
@@ -203,7 +234,17 @@ for index_row, row in source_table.iterrows():
     stop_reason = ""
     provider_id = ""
 
-    visit_occurrence_id = row[1]  # event_baznat
+    visit_occurrence_id = ""
+    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
+    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
+        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
+                                          == condition_start_datetime_string]
+        if not row_of_visit_occurrence.empty:
+            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
+    elif not list_of_visit_occurrence.empty:
+        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+
+    
     visit_detail_id = ""
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
@@ -257,7 +298,17 @@ for index_row, row in source_table.iterrows():
     stop_reason = ""
     provider_id = ""
 
-    visit_occurrence_id = row[1]  # event_baznat
+    visit_occurrence_id = ""
+    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
+    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
+        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
+                                          == condition_start_datetime_string]
+        if not row_of_visit_occurrence.empty:
+            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
+    elif not list_of_visit_occurrence.empty:
+        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+
+
     visit_detail_id = ""
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
@@ -312,7 +363,17 @@ for index_row, row in source_table.iterrows():
     stop_reason = ""
     provider_id = ""
 
-    visit_occurrence_id = row[1]  # event_baznat
+    visit_occurrence_id = ""
+    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
+    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
+        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
+                                          == condition_start_datetime_string]
+        if not row_of_visit_occurrence.empty:
+            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
+    elif not list_of_visit_occurrence.empty:
+        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+
+    
     visit_detail_id = ""
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
@@ -365,7 +426,17 @@ for index_row, row in source_table.iterrows():
     stop_reason = ""
     provider_id = ""
 
-    visit_occurrence_id = row[1]  # event_baznat
+    visit_occurrence_id = ""
+    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
+    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
+        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
+                                          == condition_start_datetime_string]
+        if not row_of_visit_occurrence.empty:
+            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
+    elif not list_of_visit_occurrence.empty:
+        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+
+
     visit_detail_id = ""
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
@@ -419,7 +490,17 @@ for index_row, row in source_table.iterrows():
     stop_reason = ""
     provider_id = ""
 
-    visit_occurrence_id = row[1]  # event_baznat
+    visit_occurrence_id = ""
+    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
+    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
+        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
+                                          == condition_start_datetime_string]
+        if not row_of_visit_occurrence.empty:
+            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
+    elif not list_of_visit_occurrence.empty:
+        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+
+
     visit_detail_id = ""
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
@@ -473,7 +554,17 @@ for index_row, row in source_table.iterrows():
     stop_reason = ""
     provider_id = ""
 
-    visit_occurrence_id = row[1]  # event_baznat
+    visit_occurrence_id = ""
+    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
+    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
+        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
+                                          == condition_start_datetime_string]
+        if not row_of_visit_occurrence.empty:
+            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
+    elif not list_of_visit_occurrence.empty:
+        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+
+
     visit_detail_id = ""
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
@@ -527,7 +618,16 @@ for index_row, row in source_table.iterrows():
     stop_reason = ""
     provider_id = ""
 
-    visit_occurrence_id = row[1]  # event_baznat
+    visit_occurrence_id = ""
+    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
+    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
+        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
+                                          == condition_start_datetime_string]
+        if not row_of_visit_occurrence.empty:
+            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
+    elif not list_of_visit_occurrence.empty:
+        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+
     visit_detail_id = ""
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
