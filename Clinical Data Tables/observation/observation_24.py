@@ -16,7 +16,8 @@ df_visit_occurrence_table= pd.DataFrame(visit_occurrence_table ,columns=['visit_
 
 data = []
 index = 1
-EHR_concept_id = 32817
+EHR_CONCEPT_ID = 32817
+MATERNITY_CLINIC = 4190427
 
 for index_row, row in source_table.iterrows():
     observation_id = index
@@ -30,7 +31,7 @@ for index_row, row in source_table.iterrows():
     observation_date = date.date()
     observation_datetime = date
 
-    observation_type_concept_id = EHR_concept_id
+    observation_type_concept_id = EHR_CONCEPT_ID
 
     match_visit_occurrence = df_visit_occurrence_table.loc[df_visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
     if match_visit_occurrence.shape[0] > 0 :
@@ -54,7 +55,7 @@ for index_row, row in source_table.iterrows():
     value_as_string = ''
     value_as_concept_id = ''
     qualifier_concept_id = ""
-    unit_concept_id = ""
+    unit_concept_id = MATERNITY_CLINIC
     provider_id = ""
     observation_source_value = ""
     observation_source_concept_id = ""
@@ -74,7 +75,7 @@ for index_row, row in source_table.iterrows():
                          value_as_number, value_as_string, value_as_concept_id, qualifier_concept_id, unit_concept_id, provider_id, visit_occurrence_id, visit_detail_id,
                          observation_source_value, observation_source_concept_id, unit_source_value, qualifier_source_value, value_source_value, observation_event_id, obs_event_field_concept_id])
             index_concepts += 1
-    index += 1
+            index += 1
 df_result = pd.DataFrame(data , columns=["observation_id", "person_id", "observation_concept_id", "observation_date", "observation_datetime", "observation_type_concept_id",
                  "value_as_number", "value_as_string", "value_as_concept_id", "qualifier_concept_id", "unit_concept_id", "provider_id", "visit_occurrence_id", "visit_detail_id",
                  "observation_source_value", "observation_source_concept_id", "unit_source_value", "qualifier_source_value", "value_source_value", "observation_event_id", "obs_event_field_concept_id"])

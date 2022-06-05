@@ -25,7 +25,6 @@ NUMBER_OF_LIVE_CHILDREN_LC = 248991006
 VBAC = 237313003
 
 for index_row, row in source_table.iterrows():
-    observation_id = index
     person_id = row["ID_BAZNAT"]
 
     ###date format
@@ -72,6 +71,7 @@ for index_row, row in source_table.iterrows():
 
     ############## NumOfPregnancies_G #############################
     if math.isnan(row['NumOfPregnancies_G']):
+        observation_id = index
         observation_concept_id = NUMBER_OF_PREVIOUS_PREGNANCIES
         value_as_number = int(row['NumOfPregnancies_G'])
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
@@ -81,6 +81,7 @@ for index_row, row in source_table.iterrows():
     ############## NumOfBirths_P #############################
 
     if not math.isnan(row['NumOfBirths_P']):
+        observation_id = index
         observation_concept_id = NUMBER_OF_BIRTHS_P
         value_as_number = int(row['NumOfBirths_P'])
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
@@ -89,6 +90,7 @@ for index_row, row in source_table.iterrows():
         index += 1
     ############## NumOfAbortions_A #############################
     if not math.isnan(row['NumOfAbortions_A']):
+        observation_id = index
         observation_concept_id = NUMBER_OF_ABORTIONS_A
         value_as_number = int(row['NumOfAbortions_A'])
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
@@ -97,6 +99,7 @@ for index_row, row in source_table.iterrows():
         index += 1
     ############## NumOfEp_EP #############################
     if not math.isnan(row['NumOfEp_EP']):
+        observation_id = index
         observation_concept_id = NUMBER_OF_EP_EP
         value_as_number = int(row['NumOfEp_EP'])
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
@@ -105,6 +108,7 @@ for index_row, row in source_table.iterrows():
         index += 1
     ############## NumOfCaesars_CS #############################
     if not math.isnan(row['NumOfCaesars_CS']):
+        observation_id = index
         observation_concept_id = NUMBER_OF_CAESARS_CS
         value_as_number = int(row['NumOfCaesars_CS'])
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
@@ -113,6 +117,7 @@ for index_row, row in source_table.iterrows():
         index += 1
     ############## NumOfLiveChildren_LC #############################
     if not math.isnan(row['NumOfLiveChildren_LC']):
+        observation_id = index
         observation_concept_id = NUMBER_OF_LIVE_CHILDREN_LC
         value_as_number = int(row['NumOfLiveChildren_LC'])
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
@@ -121,6 +126,7 @@ for index_row, row in source_table.iterrows():
         index += 1
     ############## VBAC #############################
     if not math.isnan(row['VBAC']):
+        observation_id = index
         observation_concept_id = VBAC
         value_as_number = int(row['VBAC'])
         data.append([observation_id, person_id, observation_concept_id, observation_date, observation_datetime, observation_type_concept_id,
