@@ -45,7 +45,8 @@
 		<td>observation_concept_id</td>
 		<td>last_period_date<br>spontaneous<br>fetus_count<br>pregnancy_age</td>
 		<td></td>
-		<td>Set DATE_OF_LAST_NORMAL_PERIOD = 4088445<br>Set SPONTANEOUS = 4196694<br>Set FETUS = 40567571<br><br></td>
+		<td>Set DATE_OF_LAST_NORMAL_PERIOD = 4088445<br>Set SPONTANEOUS = 4196694<br>Set FETUS = 40567571<br>1. value as string set Pregnancy_Age : 444135009
+2. value as concept id ( by the number of week ) set PREGNANCY_AGE_BY_WEEK = 366323009<br></td>
 	</tr>
 	<tr>
 		<td>observation_type_concept_id</td>
@@ -61,15 +62,40 @@
 	</tr>
 	<tr>
 		<td>value_as_string</td>
-		<td>last_period_date</td>
+		<td>last_period_date<br>pregnancy_age</td>
 		<td></td>
 		<td>Value from source table.</td>
 	</tr>
 	<tr>
 		<td>value_as_concept_id</td>
+		<td>pregnancy_age</td>
 		<td></td>
-		<td></td>
-		<td>Not use in this field.</td>
+		<td>be number of the week set the concept id :
+    TWENTY = 23464008
+    TWENTY_ONE = 41438001
+    TWENTY_TWO = 65035007
+    TWENTY_THREE = 86883006
+    TWENTY_FOUR = 313179009
+    TWENTY_FIVE = 72544005
+    TWENTY_SEX = 48688005
+    TWENTY_SEVEN = 46906003
+    TWENTY_EIGHT = 90797000
+    TWENTY_NINE = 45139008
+    THIRTY = 71355009
+    THIRTY_ONE = 64920003
+    THIRTY_TWO = 7707000
+    THIRTY_THREE = 78395001
+    THIRTY_FOUR = 13763000
+    THIRTY_FIVE = 84132007
+    THIRTY_SEX = 57907009
+    THIRTY_SEVEN = 43697006
+    THIRTY_EIGHT = 13798002
+    THIRTY_NINE = 80487005
+    FORTY = 46230007
+    FORTY_ONE = 63503002
+    FORTY_TWO = 36428009
+    FORTY_THREE = 90968009
+    FORTY_FOUR = 90968009<br>Not use in this field.</td>
 	</tr>
 	<tr>
 		<td>qualifier_concept_id</td>
@@ -81,7 +107,7 @@
 		<td>unit_concept_id</td>
 		<td></td>
 		<td></td>
-		<td>According to visit_detail_id</td>
+		<td>Not use in this field.</td>
 	</tr>
 	<tr>
 		<td>provider_id</td>
