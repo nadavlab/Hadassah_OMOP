@@ -1,15 +1,8 @@
 # Visit detail
-#
-# Parameters:
-# place of service - Inpatient Visit 4140387
-# visit type - EHR
-# Tables:
-# source table = transition Between departments
-# OMP table - visit_detail
-import math
 
 import pandas as pd
 from datetime import datetime , date
+
 source_table = pd.read_csv("92.csv")
 
 #### visit occurrence table ####
@@ -20,15 +13,29 @@ df_visit_occurrence = pd.DataFrame(visit_occurrence ,columns=['visit_occurrence_
 care_site_table = pd.read_csv("care_site.csv")
 df_care = pd.DataFrame(care_site_table , columns=["care_site_id" , "care_site_name" , "place_of_service_concept_id"])
 
+### person ####
+df_person = pd.read_csv("person.csv")
+
+def is_exsit_person_id(id_baznat):
+    match_person = df_person.loc[df_person['person_id'] == id_baznat]
+    if match_person.shape[0] > 0 :
+        return True
+    else:
+        return False
 
 data=[]
-visit_detail_new_id = 1
+index = 1
+
 ### Concepts ####
 INPATIENT_VISIT_CONCEPT_ID = 4140387
 EHR_CONCEPT_ID = 32817
 
-
 for index_row, row in source_table.iterrows():
+    if is_exsit_person_id:
+        person_id = int(row["ID_BAZNAT"])
+    else:
+        continue
+
     ### check if id visit_occurrence exists ###
     match_visit_occurrence = visit_occurrence.loc[visit_occurrence['visit_occurrence_id'] == row['Event_baznat']]
     if match_visit_occurrence.shape[0] == 0:
@@ -36,8 +43,7 @@ for index_row, row in source_table.iterrows():
     else:
         visit_occurrence_id = int(row['Event_baznat'])
 
-    visit_detail_id = visit_detail_new_id
-    person_id = int(row["ID_BAZNAT"])
+    visit_detail_id = index
     visit_detail_concept_id = INPATIENT_VISIT_CONCEPT_ID
     visit_detail_type_concept_id = EHR_CONCEPT_ID
     visit_detail_source_concept_id = EHR_CONCEPT_ID
@@ -83,7 +89,7 @@ for index_row, row in source_table.iterrows():
     data.append([visit_detail_id, person_id, visit_detail_concept_id,  visit_detail_start_date ,visit_detail_start_datetime,visit_detail_end_date,visit_detail_end_datetime,
                  visit_detail_type_concept_id,provider_id,care_site_id,visit_detail_source_value,visit_detail_source_concept_id,admitted_from_concept_id,admitted_from_source_value,
                  discharged_to_source_value, discharged_to_concept_id,preceding_visit_detail_id,parent_visit_detail_id,visit_occurrence_id   ])
-    visit_detail_new_id+=1
+    index += 1
 
 df_result = pd.DataFrame(data, columns=['visit_detail_id', 'person_id', 'visit_detail_concept_id',  'visit_detail_start_date' ,'visit_detail_start_datetime','visit_detail_end_date','visit_detail_end_datetime',
                  'visit_detail_type_concept_id','provider_id','care_site_id','visit_detail_source_value','visit_detail_source_concept_id','admitted_from_concept_id','admitted_from_source_value',

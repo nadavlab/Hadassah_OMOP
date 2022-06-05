@@ -1,16 +1,21 @@
 # Death
-#
-# Parameters:
-# death_type_concept_id - EHR
-#  cause_concept_id - Intrauterine fetal death, Fetal death due to termination of pregnancy, Intrapartum Fetal Death, Early neonatal death, Selective Fetecide, Intrauterine death of one twin
-# Tables:
-# source table = 61 Maternity ward - birth summary - newborn details
-# OMP table - death
-
 
 import pandas as pd
 from datetime import datetime
 from enum import Enum
+
+#### 61 table ####
+source_table = pd.read_csv("61.csv")
+
+### person ####
+df_person = pd.read_csv("person.csv")
+
+def is_exsit_person_id(id_baznat):
+    match_person = df_person.loc[df_person['person_id'] == id_baznat]
+    if match_person.shape[0] > 0 :
+        return True
+    else:
+        return False
 
 class DeathType(Enum):
     INTRAUTERINE_FETAL_DEATH = 4129846
@@ -20,16 +25,18 @@ class DeathType(Enum):
     SELECTIVE_FETECIDE = 4045947
     INTRAUTERINE_DEATH_OF_ONE_TWIN = 4028786
 
-source_table = pd.read_csv("61.csv")
-data=[]
-
-### Concepts ####
 EHR_CONCEPT_ID = 32817
 
 
+
+data=[]
+
 for index_row, row in source_table.iterrows():
-    person_id=row['ID_BAZNAT']
-    ###date format
+    if is_exsit_person_id(row['ID_BAZNAT']):
+        person_id=row['ID_BAZNAT']
+    else:
+        continue
+
     try:
         date = datetime.strptime(row["זמן לידה"] , '%m/%d/%Y %H:%M')
     except:
