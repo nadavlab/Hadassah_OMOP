@@ -10,7 +10,6 @@ database_name = 'Hadassah'
 engine = create_engine(
     f'postgresql+psycopg2://{user}:{password}@{hostname}/{database_name}', echo=True)
 
-# path = r"C:\Users\Tom\Downloads\pythonProject1\caresite"
 path = r"csv_to_upload"
 files = os.listdir(path)
 
@@ -25,9 +24,9 @@ for file in files:
         with engine.connect() as conn:
             for c in l:
                 conn.execute(text(
-                    f'ALTER TABLE hadassah_omop2.{table_name} ALTER COLUMN {c} SET DATA TYPE BIGINT;'))
+                    f'ALTER TABLE omop_demo.{table_name} ALTER COLUMN {c} SET DATA TYPE BIGINT;'))
 
         df.to_sql(file[:-4], index=False, con=engine,
-                  schema='hadassah_omop2', if_exists='append')
+                  schema='omop_demo', if_exists='append')
     except Exception as e:
         print(e)
