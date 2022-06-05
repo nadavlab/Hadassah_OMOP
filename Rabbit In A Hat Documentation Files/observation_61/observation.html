@@ -1,0 +1,142 @@
+<h2>Table name: observation</h2>
+
+<h3>Reading from 61.csv</h3>
+
+<img src="html_files/image1.png" alt="Field mapping">
+
+<table>
+	<tr>
+		<th>Destination Field</th>
+		<th>Source field</th>
+		<th>Logic</th>
+		<th>Comment field</th>
+	</tr>
+	<tr>
+		<td>person_id</td>
+		<td>﻿id_baznat</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>visit_occurrence_id</td>
+		<td>event_baznat</td>
+		<td></td>
+		<td>Check if the value exists in the target table visit_occurrence , if not set as None</td>
+	</tr>
+	<tr>
+		<td>observation_id</td>
+		<td></td>
+		<td></td>
+		<td>ID run</td>
+	</tr>
+	<tr>
+		<td>observation_concept_id</td>
+		<td>apgar 1 - sum of values<br>weight<br>umbilical cord with 3 blood vessels<br>mode of birth<br>presentation<br>type of death<br>apgar 1 - pulse<br>apgar 1 - breathing<br>apgar 1 - color<br>apgar 1 - tone<br>apgar 1 - response<br>apgar 5 - amount of values<br>apgar 5 - pulse<br>apgar 5 - breathing<br>apgar 5 - color<br>apgar 5 - tone<br>apgar 10 - amount of values<br>apgar 10 - breathing<br>apgar 10 - color<br>apgar 10 - tone<br>apgar 10 - response<br>apgar 5 - response<br>apgar 10 - pulse</td>
+		<td></td>
+		<td>Set ONE_MINUTE_APGAR_SCORE = 3016704<br>Set BIRTH_WEIGHT concept id  = 4264825<br>Set UMBILICUS_FINDING = 4096860<br>Set PATTERN_OF_DELIVERY = 4126390<br>Set PRESENTATION = 4084388<br>Set DEATH_DIAGNOSIS = 4052310<br>Set ONE_MINUTE_APGAR_HEART_RATE = 3027152<br>Set ONE_MINUTE_APGAR_RESPIRATORY_EFFORT = 3023275<br>Set ONE_MINUTE_APGAR_COLOR = 3026329<br>Set ONE_MINUTE_APGAR_MUSCLE_TONE = 3013445<br>Set ONE_MINUTE_APGAR_REFLEX_IRRITABILITY = 3027666<br>Set FIVE_MINUTE_APGAR_SCORE = 3004221<br>Set FIVE_MINUTE_APGAR_HEART_RATE = 3026961<br>Set FIVE_MINUTE_APGAR_RESPIRATORY_EFFORT = 3024292<br>Set FIVE_MINUTE_APGAR_COLOR = 3025592<br>Set FIVE_MINUTE_APGAR_MUSCLE_TONE = 3027494<br>Set TEN_MINUTE_APGAR_SCORE = 3016162<br>Set TEN_MINUTE_APGAR_RESPIRATORY_EFFORT = 3025485<br>Set TEN_MINUTE_APGAR_COLOR = 3005021<br>Set TEN_MINUTE_APGAR_MUSCLE_TONE = 3006474<br>Set TEN_MINUTE_APGAR_REFLEX_IRRITABILITY = 3022387<br>Set FIVE_MINUTE_APGAR_REFLEX_IRRITABILITY = 3028332<br>Set TEN_MINUTE_APGAR_HEART_RATE = 3007503<br></td>
+	</tr>
+	<tr>
+		<td>observation_date</td>
+		<td>time of birth</td>
+		<td></td>
+		<td>Only date DD/MM/YYYY<br>Only date DD/MM/YYYY</td>
+	</tr>
+	<tr>
+		<td>observation_datetime</td>
+		<td>time of birth</td>
+		<td></td>
+		<td>Date and time - DD/MM/YYYY HH:MM:SS</td>
+	</tr>
+	<tr>
+		<td>observation_type_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Set EHR_CONCEPT_ID = 32817</td>
+	</tr>
+	<tr>
+		<td>value_as_number</td>
+		<td>weight<br>apgar 1 - sum of values<br>apgar 1 - pulse<br>apgar 1 - breathing<br>apgar 1 - color<br>apgar 1 - tone<br>apgar 1 - response<br>apgar 5 - amount of values<br>apgar 5 - pulse<br>apgar 5 - breathing<br>apgar 5 - color<br>apgar 5 - tone<br>apgar 5 - response<br>apgar 10 - pulse<br>apgar 10 - breathing<br>apgar 10 - color<br>apgar 10 - tone<br>apgar 10 - response<br>apgar 10 - amount of values</td>
+		<td></td>
+		<td>Value from source table.</td>
+	</tr>
+	<tr>
+		<td>value_as_string</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>value_as_concept_id</td>
+		<td>umbilical cord with 3 blood vessels<br>mode of birth<br>presentation<br>type of death</td>
+		<td></td>
+		<td>If 'כן' / 'yes' set UMBILICAL_CORD_NORMAL = 289315001
+if 'לא' / 'no' set ABSENT_BLOOD_VESSEL_IN_UMBILICAL_CORD = 302945005<br>Using an auxiliary table.<br>Using an auxiliary table.<br>Using an auxiliary table.<br></td>
+	</tr>
+	<tr>
+		<td>qualifier_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>unit_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>According to visit_detail_id</td>
+	</tr>
+	<tr>
+		<td>provider_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>visit_detail_id</td>
+		<td></td>
+		<td></td>
+		<td>According to visit_occuerrence id and time.</td>
+	</tr>
+	<tr>
+		<td>observation_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>observation_source_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>unit_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>qualifier_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>value_source_value</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>observation_event_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+	<tr>
+		<td>obs_event_field_concept_id</td>
+		<td></td>
+		<td></td>
+		<td>Not use in this field.</td>
+	</tr>
+</table>
+

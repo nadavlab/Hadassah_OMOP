@@ -1,7 +1,7 @@
 # Care site table
 #
 # Parameters:
-#inpatient_visit_concept_id - 9201
+#inpatient_visit_concept_id - 4140387
 #initial_index - 1
 # Tables:
 # source table = transition Between departments
@@ -11,13 +11,13 @@
 import pandas as pd
 
 table_name = "92.csv"
-inpatient_visit_concept_id = 9201
+INPATIENT_VISIT_CONCEPT_ID = 4140387
 initial_index = 1
 table = pd.read_csv(table_name)
 department = table["Department"].drop_duplicates()
 data=[]
 care_site_id = initial_index
-place_of_service_concept_id = inpatient_visit_concept_id
+place_of_service_concept_id = INPATIENT_VISIT_CONCEPT_ID
 location_id = ''
 care_site_source_value = ''
 place_of_service_source_value = ''

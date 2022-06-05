@@ -1,7 +1,7 @@
 # Visit detail
 #
 # Parameters:
-# place of service - Inpatient Visit 9201
+# place of service - Inpatient Visit 4140387
 # visit type - EHR
 # Tables:
 # source table = transition Between departments
@@ -24,7 +24,7 @@ df_care = pd.DataFrame(care_site_table , columns=["care_site_id" , "care_site_na
 data=[]
 visit_detail_new_id = 1
 ### Concepts ####
-INPATIENT_VISIT_CONCEPT_ID = 9201
+INPATIENT_VISIT_CONCEPT_ID = 4140387
 EHR_CONCEPT_ID = 32817
 
 

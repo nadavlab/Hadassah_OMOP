@@ -20,7 +20,7 @@ care_site_table = pd.read_csv("care_site.csv")
 df_care_site = pd.DataFrame(care_site_table ,columns=["care_site_id" , "care_site_name" ])
 
 ### Concepts ####
-INPATIENT_VISIT_CONCEPT_ID = 9201
+INPATIENT_VISIT_CONCEPT_ID = 4140387
 EHR_CONCEPT_ID = 32817
 
 i=0
