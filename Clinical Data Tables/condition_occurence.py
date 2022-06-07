@@ -43,7 +43,7 @@ for index_row, row in source_table.iterrows():
     # search if event_baznat is in visit_occurrence
     visit_occurrence_id = ""
     match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
-    if match_visit_occurrence.shape[0] > 0:
+    if not match_visit_occurrence.empty:
         visit_occurrence_id = row["Event_baznat"]
    
 
