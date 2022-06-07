@@ -7,16 +7,23 @@ concepts_icd_table = pd.read_csv("concepts_icd9.csv")
 concept_Yishay_table = pd.read_csv("YS_28_03_22.csv")
 visit_occurrence_table = pd.read_csv("visit_occurrence.csv")
 visit_detait_table = pd.read_csv("visit_detail.csv")
+person_table = pd.read_csv("person.csv")
 
 data = []
 index = 1
 
-#check if person id is present in table person!
+condition_type_concept_id = 32817  # EHR record
+condition_status_concept_id = ""
+stop_reason = ""
+provider_id = ""
 
 for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue
 
     condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[3]]
@@ -32,20 +39,13 @@ for index_row, row in source_table.iterrows():
     condition_end_date = condition_start_date
     condition_end_datetime = condition_start_datetime
 
-    condition_type_concept_id = 32817  # EHR record
-    condition_status_concept_id = ""
-    stop_reason = ""
-    provider_id = ""
-
+   
+    # search if event_baznat is in visit_occurrence
     visit_occurrence_id = ""
-    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
-    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
-        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
-                                          == condition_start_datetime_string]
-        if not row_of_visit_occurrence.empty:
-            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
-    elif not list_of_visit_occurrence.empty:
-        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+    match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0:
+        visit_occurrence_id = row["Event_baznat"]
+   
 
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
     visit_detail_id = ""
@@ -82,6 +82,9 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue
 
     condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[3]]
@@ -97,21 +100,10 @@ for index_row, row in source_table.iterrows():
     condition_end_date = condition_start_date
     condition_end_datetime = condition_start_datetime
 
-    condition_type_concept_id = 32817  # EHR record
-    condition_status_concept_id = ""
-    stop_reason = ""
-    provider_id = ""
-
     visit_occurrence_id = ""
-    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
-    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
-        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
-                                          == condition_start_datetime_string]
-        if not row_of_visit_occurrence.empty:
-            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
-    elif not list_of_visit_occurrence.empty:
-        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
-
+    match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0:
+        visit_occurrence_id = row["Event_baznat"]
     
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
     visit_detail_id = ""
@@ -147,7 +139,12 @@ source_table = pd.read_csv("28.csv")
 for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
+
     person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue    
+    
     condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[11]]
     if not row_for_concept_id.empty:
@@ -160,21 +157,10 @@ for index_row, row in source_table.iterrows():
     condition_end_date = condition_start_date
     condition_end_datetime = condition_start_datetime
 
-    condition_type_concept_id = 32817  # EHR record
-    condition_status_concept_id = ""
-    stop_reason = ""
-    provider_id = ""
-
     visit_occurrence_id = ""
-    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
-    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
-        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
-                                          == condition_start_datetime_string]
-        if not row_of_visit_occurrence.empty:
-            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
-    elif not list_of_visit_occurrence.empty:
-        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
-
+    match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0:
+        visit_occurrence_id = row["Event_baznat"]
     
     visit_detail_id = ""
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
@@ -217,6 +203,10 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue
+
     condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[10]]
     if not row_for_concept_id.empty:
@@ -229,22 +219,11 @@ for index_row, row in source_table.iterrows():
     condition_end_date = condition_start_date
     condition_end_datetime = condition_start_datetime
 
-    condition_type_concept_id = 32817  # EHR record
-    condition_status_concept_id = ""
-    stop_reason = ""
-    provider_id = ""
-
     visit_occurrence_id = ""
-    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
-    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
-        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
-                                          == condition_start_datetime_string]
-        if not row_of_visit_occurrence.empty:
-            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
-    elif not list_of_visit_occurrence.empty:
-        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+    match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0:
+        visit_occurrence_id = row["Event_baznat"]
 
-    
     visit_detail_id = ""
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 
@@ -281,6 +260,11 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue
+    
+    
     condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[10]]
     if not row_for_concept_id.empty:
@@ -293,20 +277,10 @@ for index_row, row in source_table.iterrows():
     condition_end_date = condition_start_date
     condition_end_datetime = condition_start_datetime
 
-    condition_type_concept_id = 32817  # EHR record
-    condition_status_concept_id = ""
-    stop_reason = ""
-    provider_id = ""
-
     visit_occurrence_id = ""
-    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
-    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
-        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
-                                          == condition_start_datetime_string]
-        if not row_of_visit_occurrence.empty:
-            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
-    elif not list_of_visit_occurrence.empty:
-        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+    match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0:
+        visit_occurrence_id = row["Event_baznat"]
 
 
     visit_detail_id = ""
@@ -345,7 +319,13 @@ source_table = pd.read_csv("63.csv")
 for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
+
     person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue
+
+
     condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[11]]
     if not row_for_concept_id.empty:
@@ -358,20 +338,10 @@ for index_row, row in source_table.iterrows():
     condition_end_date = condition_start_date
     condition_end_datetime = condition_start_datetime
 
-    condition_type_concept_id = 32817  # EHR record
-    condition_status_concept_id = ""
-    stop_reason = ""
-    provider_id = ""
-
     visit_occurrence_id = ""
-    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
-    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
-        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
-                                          == condition_start_datetime_string]
-        if not row_of_visit_occurrence.empty:
-            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
-    elif not list_of_visit_occurrence.empty:
-        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+    match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0:
+        visit_occurrence_id = row["Event_baznat"]
 
     
     visit_detail_id = ""
@@ -409,6 +379,10 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue    
+    
     condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[10]]
     if not row_for_concept_id.empty:
@@ -421,21 +395,10 @@ for index_row, row in source_table.iterrows():
     condition_end_date = condition_start_date
     condition_end_datetime = condition_start_datetime
 
-    condition_type_concept_id = 32817  # EHR record
-    condition_status_concept_id = ""
-    stop_reason = ""
-    provider_id = ""
-
     visit_occurrence_id = ""
-    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
-    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
-        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
-                                          == condition_start_datetime_string]
-        if not row_of_visit_occurrence.empty:
-            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
-    elif not list_of_visit_occurrence.empty:
-        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
-
+    match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0:
+        visit_occurrence_id = row["Event_baznat"]
 
     visit_detail_id = ""
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
@@ -473,6 +436,10 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue
+
     condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[11]]
     if not row_for_concept_id.empty:
@@ -485,21 +452,10 @@ for index_row, row in source_table.iterrows():
     condition_end_date = condition_start_date
     condition_end_datetime = condition_start_datetime
 
-    condition_type_concept_id = 32817  # EHR record
-    condition_status_concept_id = ""
-    stop_reason = ""
-    provider_id = ""
-
     visit_occurrence_id = ""
-    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
-    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
-        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
-                                          == condition_start_datetime_string]
-        if not row_of_visit_occurrence.empty:
-            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
-    elif not list_of_visit_occurrence.empty:
-        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
-
+    match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0:
+        visit_occurrence_id = row["Event_baznat"]
 
     visit_detail_id = ""
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
@@ -536,7 +492,11 @@ source_table = pd.read_csv("79.csv")
 for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
+
     person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue
     condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[11]]
     if not row_for_concept_id.empty:
@@ -549,20 +509,10 @@ for index_row, row in source_table.iterrows():
     condition_end_date = condition_start_date
     condition_end_datetime = condition_start_datetime
 
-    condition_type_concept_id = 32817  # EHR record
-    condition_status_concept_id = ""
-    stop_reason = ""
-    provider_id = ""
-
     visit_occurrence_id = ""
-    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
-    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
-        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
-                                          == condition_start_datetime_string]
-        if not row_of_visit_occurrence.empty:
-            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
-    elif not list_of_visit_occurrence.empty:
-        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
+    match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0:
+        visit_occurrence_id = row["Event_baznat"]
 
 
     visit_detail_id = ""
@@ -601,6 +551,10 @@ for index_row, row in source_table.iterrows():
 
     condition_occurrence_id = index
     person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue
+
     condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[10]]
     if not row_for_concept_id.empty:
@@ -613,21 +567,10 @@ for index_row, row in source_table.iterrows():
     condition_end_date = condition_start_date
     condition_end_datetime = condition_start_datetime
 
-    condition_type_concept_id = 32817  # EHR record
-    condition_status_concept_id = ""
-    stop_reason = ""
-    provider_id = ""
-
     visit_occurrence_id = ""
-    list_of_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['person_id'] == person_id]
-    if list_of_visit_occurrence.shape[0] != 1 and not list_of_visit_occurrence.empty:
-        row_of_visit_occurrence = list_of_visit_occurrence.loc[list_of_visit_occurrence['visit_start_datetime']
-                                          == condition_start_datetime_string]
-        if not row_of_visit_occurrence.empty:
-            visit_occurrence_id = row_of_visit_occurrence['visit_occurrence_id'].values[0]
-    elif not list_of_visit_occurrence.empty:
-        visit_occurrence_id = list_of_visit_occurrence['visit_occurrence_id'].values[0]
-
+    match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0:
+        visit_occurrence_id = row["Event_baznat"]
     visit_detail_id = ""
     list_of_visits = visit_detait_table.loc[visit_detait_table['person_id'] == person_id]
 

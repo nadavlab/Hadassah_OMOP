@@ -1,4 +1,6 @@
 
+-- http://http://132.72.65.168:5050/WebAPI/ddl/results?dialect=postgresql&schema=results&vocabSchema=omop_demo&tempSchema=temp&initConceptHierarchy=true
+
 CREATE TABLE IF NOT EXISTS results.cohort
  (COHORT_DEFINITION_ID int NOT NULL,
 	SUBJECT_ID bigint NOT NULL,
