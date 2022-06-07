@@ -39,10 +39,10 @@
 
 ## connections
 
-•	### Connection to the university's remote server
-•	### Perform the steps for connecting the desired consent from the PostgreSQL server To Atlas According to the Git - https://github.com/OHDSI/WebAPI/wiki/CDMConfiguration
+•	 Connection to the university's remote server
+• Perform the steps for connecting the desired consent from the PostgreSQL server To Atlas According to the Git - https://github.com/OHDSI/WebAPI/wiki/CDMConfiguration:
   •	Creating 2 new schemas on the Postgres server, each schema will be used for a different rule. 
-  •	Entering parameters, which provide login information for the desired schema on the server, into URL Given in the manual and running the script that         build tables to results schema, given by the web page, in PostgreSQL server.
+  •	Entering parameters, which provide login information for the desired schema on the server, into URL Given in the manual and running the script that build tables to     results schema, given by the web page, in PostgreSQL server.
     [link to script]
     (https://github.com/nadavlab/Hadassah_OMOP/blob/main/Sql%20Scripts/cdm_config_webAPI.sql)
 
