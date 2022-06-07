@@ -1,19 +1,51 @@
 # Hadassah_OMOP
 
-תהליך התקנת שרת Postgres והעלאת האפליקציה OHDSI:
-1. חיבור לשרת הרחוק של האוניברסיטה על ידי בקשת הרשאות
-2. הורדת גיט של OHDSI:https://github.com/OHDSI/Broadsea-WebTools 
-3.הרצת הdocker מרובה הקונטיינרים באמצעות הכלי compose.
-4. עריכה של קובצי הקונפיגורציה: 
-  4.1 של הקונטיינר שמריץ את השרת כך שהפרטי ההתחברות יתאימו למסד הנתונים Hadassah שנמצא על שרת הpostgres.
-  4.2 של הקונטינר שמריץ את webAPI של OHDSI והזנת כתובת הקישור לATLAS דרך השרת הרחוק:http://132.72.65.168:8080/atlas/
-5. הורדת הטבלאות VOCABULARY CONCEPTS וכו' של OHDSI דרך הקישור:https://athena.ohdsi.org/search-terms/start
-6. הורדת הגיט- https://github.com/MIT-LCP/mimic-omop/tree/master/omop/build-omop/postgresql  
-7.ביצוע השלבים בגיט באמצעות פקודות לינוקס על השרת הרחוק:
-  7.1 התחברות  למסד נתונים שנמצא על שרת הpostgres
-  7.2 הרצת סקריפט sql שבונה את טבלאות היעד בשרת
-  7.3 הרצת סקריפט sql שמגדיר את המפתחות הראשיים בכל טבלה
-  7.4 העלאת טבלאות המילון וה-concepts לשרת דרך סקריפט Sql 
-  7.5 העלאה של כל טבלה בנפרד למסד הנתונים באמצעות סקריפט שנבנה בפייתון וובניית אילוצים באמצעות סקריפט sql על כל טבלה
-8. בניית טבלאות source במסד הנתונים והרצת script sql בשרת הpostgres בשביל לחבר את הסכמה הרצויה לאפליקציית הATLAS.
-9.לאחר שווידאנו בקונפיגורציה של אטלס שאכן הסכמה הרצויה מחוברת לאטלס הרופאים יכולים להריץ שאילתות באטלס ולקבל מידע מהיר ממסד הנתונים הנתונים.
+# Building the server and application
+ 
+
+## Permissions
+### These permissions were granted by the Computer Department at Ben-Gurion University and the permissions are-
+  •	To the remote server
+  •	 For a compose tool
+  •	The tool through which you can connect to the server PostgreSQL Via the remote server Using the command psql In Linux.
+
+## Installations
+### Steps to set up a server Postgres And uploading the app OHDSI:
+•	clone to Git: OHDSI: https://github.com/OHDSI/Broadsea-WebTools 
+•	Running the docker Multiple containers Using the tool compose.
+•	Editing the configuration files:
+  •	 Of the container that runs the server so that the login information matches the database Hadassah Which is on the PostgreSQL server.
+  •	Of the container running the webAPI of OHDSI And entering the link address to ATLAS Via the remote server: http://132.72.65.168:8080/atlas/.
+•	 Download the tables VOCABULARY CONCEPTS etc ,'of OHDSI Via the link: https://athena.ohdsi.org/search-terms/start
+
+•	Download the scripts that define the tables in the appropriate version and move them to a folder we created on the remote server.
+•	Performing the steps given in Git: https://github.com/MIT-LCP/mimic-omop/tree/master/omop/build-omop/postgresql using Linux commands on the remote server:
+  •	Connecting to a database located on the PostgreSQL server 
+  •	Running a script SQL Which builds the target tables on the server.
+    [link to script] 
+    (https://github.com/nadavlab/Hadassah_OMOP/blob/main/Sql%20Scripts/OMOPCDM_postgresql_5.46_ddl.sql)
+  •	Running a script SQL Which defines the primary keys in each table.
+    [link to script] 
+    (https://github.com/nadavlab/Hadassah_OMOP/blob/main/Sql%20Scripts/OMOPCDM_postgresql_5.46_primary_keys.sql)
+
+  •	Upload vocabulary tables and concepts  through script execution SQL
+    [link to script] (https://github.com/nadavlab/Hadassah_OMOP/blob/main/Sql%20Scripts/omop_vocab_load.sql)
+
+  •	Upload each table individually to the database using a script built in Python.
+    [link to script] (https://github.com/nadavlab/Hadassah_OMOP/blob/main/Sql%20Scripts/upload_data.py)
+
+  •	Build constraints using a SQL script on each table.
+    [link to script] (https://github.com/nadavlab/Hadassah_OMOP/blob/main/Sql%20Scripts/omop_constraints_load.sql)
+
+## connections
+
+•	### Connection to the university's remote server
+•	### Perform the steps for connecting the desired consent from the PostgreSQL server To Atlas According to the Git - https://github.com/OHDSI/WebAPI/wiki/CDMConfiguration
+  •	Creating 2 new schemas on the Postgres server, each schema will be used for a different rule. 
+  •	Entering parameters, which provide login information for the desired schema on the server, into URL Given in the manual and running the script that         build tables to results schema, given by the web page, in PostgreSQL server.
+    [link to script]
+    (https://github.com/nadavlab/Hadassah_OMOP/blob/main/Sql%20Scripts/cdm_config_webAPI.sql)
+
+  •	 Changing parameters in the script given to us by Git and running it to build the Source tables and connect us to the desired schema to the atlas.
+  •	 Running the software Achilles in the language R And inserting the results of the run into a scheme we initially created. 
+     The Achilles is used to analyze the data of the tables visually.

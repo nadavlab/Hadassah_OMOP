@@ -94,11 +94,11 @@ for index_row, row in source_table.iterrows():
     ################################## זמן פתיחה מלאה #################################
     if str(row["זמן פתיחה מלאה"]):
         observation_concept_id = FULL_OPENING_TIME
-        if row["זמן תחילת צירים"] and type(row["זמן תחילת צירים"]) == str :
+        if row["זמן פתיחה מלאה"] and type(row["זמן פתיחה מלאה"]) == str :
             try :
-                value_as_string = datetime.strptime(row["זמן תחילת צירים"] , '%m/%d/%Y %H:%M')
+                value_as_string = datetime.strptime(row["זמן פתיחה מלאה"] , '%m/%d/%Y %H:%M')
             except :
-                value_as_string = datetime.strptime(row["זמן תחילת צירים"] , '%m/%d/%Y %H:%M:%S %p')
+                value_as_string = datetime.strptime(row["זמן פתיחה מלאה"] , '%m/%d/%Y %H:%M:%S %p')
         data.append([observation_id , person_id , observation_concept_id , str(observation_date) , observation_datetime,
                      observation_type_concept_id ,
                      value_as_number , str(value_as_string) , value_as_concept_id , qualifier_concept_id ,
