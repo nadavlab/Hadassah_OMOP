@@ -1,8 +1,18 @@
-from asyncio.windows_events import NULL
-from curses.ascii import NUL
+# from asyncio.windows_events import NULL
+# from curses.ascii import NULL
 import pandas as pd
 from datetime import datetime
+
+# person :
+person_table = pd.read_csv("person.csv")
+
+# visit detail :
+visit_detail_table = pd.read_csv("visit_detail.csv")
+df_visit_detail_table = pd.DataFrame(visit_detail_table ,columns=['visit_detail_id', 'person_id','visit_occurrence_id', 'visit_detail_start_datetime', 'visit_detail_end_datetime'])
+
+# visit occurrence :
 visit_occurrence_table = pd.read_csv("visit_occurrence.csv")
+df_visit_occurrence_table= pd.DataFrame(visit_occurrence_table ,columns=['visit_occurrence_id','visit_start_datetime'])
 
 
 # table 2 - מעבדות ילודים
@@ -12,81 +22,81 @@ df_concept_id_table_2 = pd.DataFrame(concept_id_table_2, columns=[
                                      'rep_component_name', 'concept'])
 
 data = []
-index=1
+index = 1
 
 LABORATORY = 261904005  # טיפול מיוחד בילוד
 
 measurement_time = ''
-operator_concept_id=0
-unit_concept_id=0
-range_low=""
-range_high=""
-provider_id=""
+operator_concept_id = 0
+unit_concept_id = 0
+range_low = ""
+range_high = ""
+provider_id = ""
 
 for index_row, row in source_table.iterrows():
 
     #check if person exists in person
-    
-    measurement_id = index
     person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue
 
+    measurement_id = index
+    visit_occurrence_id = row[1]  # Event baznat
+    match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] ==
+                                                        visit_occurrence_id]
+    if match_visit_occurrence.empty:
+        visit_occurrence_id = None
 
+    if row[7] == '':
+        if visit_occurrence_table['visit_occurrence_id'] == visit_occurrence_id:
+            measurement_date = visit_occurrence_table['visit_start_date'].value
+        else:
+            measurement_date= datetime.datetime(1999, 1, 1)
 
-    date_measurement = datetime.strptime(row[7], '%d/%m/%Y %H:%M:%S')
-    measurement_date = date_measurement.date()
-    measurement_datetime = date_measurement
+    else:
+        str_date = str(row[7])
+        try:
+            date_m = datetime.strptime(str_date, '%d/%m/%Y %H:%M:%S')
+        except:
+            date_m = datetime.strptime(str_date, '%d/%m/%Y %H:%M')
 
-    # measurement_datetime = row[7]
-    # measurement_date = str(row[7])
-    # measurement_date = measurement_date[:10]
-    
-    measurement_type_concept_id = LABORATORY  # unit
+    measurement_date = date_m.date()
+    measurement_datetime = date_m
 
+    measurement_type_concept_id = LABORATORY  # unit , where the Measurement record was recorded
+
+    # name of measurement by concept id
     measurement_concept_id = 0
-    # search the concept id in other data frame
-    # match_measurement_concept_id = concept_id_table.loc[concept_id_table['rep_component_name'] == measurement_concept_id]
-    # index_measurement_concept_id = 0
-    # if match_measurement_concept_id.values.shape[0] > 0:
-    #      while match_measurement_concept_id.values.shape[0] > index_measurement_concept_id:
-
     match = df_concept_id_table_2.loc[df_concept_id_table_2['rep_component_name']
                                       == row["rep_component_name"]]
     if match.shape[0] > 0:
         measurement_concept_id = match.values[0][1]
-    # else:
-    #     measurement_concept_id = ''
 
     value_as_number = row[8]
     value_as_concept_id = ""
 
-    #TODO
-    visit_occurrence_id = ""
-    #TODO
-    visit_detail_id = ""
-    #TODO
     measurement_source_value = row[4]
     measurement_source_concept_id = 0
 
-    #TODO???
-    unit_source_value=""
-    unit_source_concept_id=""
-    value_source_value =""
-    measurement_event_id=""
-    meas_event_field_concept_id=""
+    unit_source_value = row[2]
+    value_source_value = row[8]
 
-    data.append([measurement_id, person_id, measurement_concept_id, measurement_date, measurement_datetime, measurement_time, 
-    measurement_type_concept_id,operator_concept_id,value_as_number, value_as_concept_id,unit_concept_id,range_low,range_high,
-    provider_id,visit_occurrence_id,visit_detail_id,measurement_source_value,measurement_source_concept_id,unit_source_value,
-    unit_source_concept_id,value_source_value,measurement_event_id,meas_event_field_concept_id])
+    measurement_event_id = ""
+    meas_event_field_concept_id = ""
+    unit_source_concept_id = ""
+    visit_detail_id = ""
 
-    index+=1
+    data.append([measurement_id, person_id, measurement_concept_id, measurement_date, measurement_datetime,
+                 measurement_time, measurement_type_concept_id,operator_concept_id,value_as_number,
+                 value_as_concept_id,unit_concept_id,range_low,range_high ,provider_id,visit_occurrence_id,
+                 visit_detail_id,measurement_source_value,measurement_source_concept_id,unit_source_value,
+                 unit_source_concept_id,value_source_value,measurement_event_id,meas_event_field_concept_id])
 
-# df_result = pd.DataFrame(data, columns=['measurement_id', 'person_id', 'measurement_concept_id', 'measurement_date',
-#                          'measurement_datetime', 'measurement_type_concept_id', 'value_as_number', 'value_as_concept_id'])
-
-# df_result.to_csv('measurement2.csv', encoding='utf-8', index=False)
+    index += 1
 
 
+#
 # table 8 - פגים מדדים קבלה
 source_table = pd.read_csv("8.csv")
 # data8 = []
@@ -100,9 +110,14 @@ COLOR = 248472001
 NEONATAL_INTENSIVE_CARE_UNIT = 405269005
 
 for index_row, row in source_table.iterrows():
-    
-    measurement_id = index
+
+    # check if person exists in person
     person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue
+
+    measurement_id = index
 
     if row[3].__contains__('דופק'):
         measurement_concept_id = HR
@@ -118,16 +133,24 @@ for index_row, row in source_table.iterrows():
         measurement_concept_id = COLOR  # color
 
     measurement_type_concept_id = NEONATAL_INTENSIVE_CARE_UNIT  # טיפול נמרץ ילודים
-    
-    measurement_datetime = ""
-    match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
-    if not match_visit_occurrence.empty:
-        measurement_datetime = match_visit_occurrence["visit_start_datetime"]
-        measurement_date= measurement_datetime.date()
 
+    visit_occurrence_id = 0
+    measurement_datetime = 0
+    measurement_date = 0
+
+    match_visit_occurrence = df_visit_occurrence_table.loc[df_visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0 :
+        visit_occurrence_id = row["Event_baznat"]
+        date_m = match_visit_occurrence['visit_start_datetime']
+        date_m = date_m.values[0]
+        measurement_datetime = datetime.strptime(date_m, '%Y-%m-%d %H:%M:%S')
+        measurement_date = measurement_datetime.date()
+    else:
+        visit_occurrence_id = ''
 
     value_as_concept_id = ''
     value_as_number = ''
+
     if measurement_concept_id != COLOR:
         value_as_number = row[4]
     elif row[4].__contains__('ורוד'):
@@ -155,17 +178,24 @@ for index_row, row in source_table.iterrows():
     else:
         value_as_concept_id = None
 
-    data.append([measurement_id, person_id, measurement_concept_id, measurement_date, measurement_datetime, measurement_time, 
-    measurement_type_concept_id,operator_concept_id,value_as_number, value_as_concept_id,unit_concept_id,range_low,range_high,
-    provider_id,visit_occurrence_id,visit_detail_id,measurement_source_value,measurement_source_concept_id,unit_source_value,
-    unit_source_concept_id,value_source_value,measurement_event_id,meas_event_field_concept_id])
+    measurement_source_value = row[4]
+    measurement_source_concept_id = 0
 
-    index+=1
+    unit_source_value = row[2]
+    value_source_value = row[3]
 
-# df_result = pd.DataFrame(data8, columns=['measurement_id', 'person_id', 'measurement_concept_id',
-#                          'measurement_date', 'measurement_type_concept_id', 'value_as_number', 'value_as_concept_id'])
+    measurement_event_id = ""
+    meas_event_field_concept_id = ""
+    unit_source_concept_id = ""
+    visit_detail_id = ""
 
-# df_result.to_csv('measurement8.csv', encoding='utf-8', index=False)
+    data.append([measurement_id, person_id, measurement_concept_id, measurement_date, measurement_datetime,
+                 measurement_time, measurement_type_concept_id,operator_concept_id,value_as_number,
+                 value_as_concept_id,unit_concept_id,range_low,range_high,provider_id,visit_occurrence_id,
+                 visit_detail_id,measurement_source_value,measurement_source_concept_id,unit_source_value,
+                 unit_source_concept_id,value_source_value,measurement_event_id,meas_event_field_concept_id])
+
+    index += 1
 
 
 # table 17 - תינוקות מדדים
@@ -181,9 +211,13 @@ GLUCOCHECK = 365811003
 
 
 for index_row, row in source_table.iterrows():
-    
-    measurement_id = index
+    # check if person exists in person
     person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue
+
+    measurement_id = index
 
     if row[3].__contains__('דופק'):
         measurement_concept_id = HR
@@ -198,11 +232,37 @@ for index_row, row in source_table.iterrows():
     else:
         measurement_concept_id = None
 
-    measurement_datetime = row[4]
-    measurement_date = row[4]
-    measurement_date = measurement_date[:10]
+    measurement_datetime = 0
+    measurement_date = 0
+
+    match_visit_occurrence = df_visit_occurrence_table.loc[
+        df_visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0:
+        visit_occurrence_id = row["Event_baznat"]
+    else:
+        visit_occurrence_id = ''
+
+    match_visit_detail = df_visit_detail_table.loc[
+        df_visit_detail_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0:
+        visit_detail_id = match_visit_detail["visit_detail_id"]
+    else:
+        visit_detail_id = ''
+
+    try:
+        str_date = str(row[4])
+        date_m = datetime.strptime(str_date, '%d/%m/%Y %H:%M:%S')
+        measurement_date = date_m.date()
+        measurement_datetime = date_m
+    except:
+        date_m = datetime.strptime(str_date, '%d/%m/%Y %H:%M')
+        measurement_date = date_m.date()
+        measurement_datetime = date_m
 
     measurement_type_concept_id = NEWBORN_NURSERY_UNIT
+
+    value_as_concept_id = ''
+    value_as_number = ''
 
     if row[5] == 'low':
         value_as_concept_id = 4083207  # Below reference range
@@ -211,22 +271,35 @@ for index_row, row in source_table.iterrows():
     else:
         value_as_number = row[5]
 
+    measurement_source_value = row[3]
+    measurement_source_concept_id = 0
 
+    unit_source_value = row[2]
+    value_source_value = row[5]
 
-    data.append([measurement_id, person_id, measurement_concept_id, measurement_date, measurement_datetime, measurement_time, 
-    measurement_type_concept_id,operator_concept_id,value_as_number, value_as_concept_id,unit_concept_id,range_low,range_high,
-    provider_id,visit_occurrence_id,visit_detail_id,measurement_source_value,measurement_source_concept_id,unit_source_value,
-    unit_source_concept_id,value_source_value,measurement_event_id,meas_event_field_concept_id])
+    measurement_event_id = ""
+    meas_event_field_concept_id = ""
+    unit_source_concept_id = ""
+
+    data.append([measurement_id, person_id, measurement_concept_id, measurement_date, measurement_datetime,
+                 measurement_time,measurement_type_concept_id,operator_concept_id,value_as_number,
+                 value_as_concept_id,unit_concept_id,range_low,range_high,provider_id,visit_occurrence_id,
+                 visit_detail_id,measurement_source_value,measurement_source_concept_id,unit_source_value,
+                 unit_source_concept_id,value_source_value,measurement_event_id,meas_event_field_concept_id])
 
     index+=1
 
 
 
 
-df_result = pd.DataFrame(data, columns=['measurement_id', 'person_id', 'measurement_concept_id', 'measurement_date', 'measurement_datetime', 'measurement_time', 
-    'measurement_type_concept_id','operator_concept_id','value_as_number', 'value_as_concept_id','unit_concept_id','range_low','range_high',
-    'provider_id','visit_occurrence_id','visit_detail_id','measurement_source_value','measurement_source_concept_id','unit_source_value',
-    'unit_source_concept_id','value_source_value','measurement_event_id','meas_event_field_concept_id'])
+df_result = pd.DataFrame(data, columns=['measurement_id', 'person_id', 'measurement_concept_id',
+                                        'measurement_date', 'measurement_datetime', 'measurement_time',
+                                        'measurement_type_concept_id','operator_concept_id','value_as_number',
+                                        'value_as_concept_id','unit_concept_id','range_low','range_high',
+                                        'provider_id','visit_occurrence_id','visit_detail_id',
+                                        'measurement_source_value','measurement_source_concept_id',
+                                        'unit_source_value','unit_source_concept_id','value_source_value',
+                                        'measurement_event_id','meas_event_field_concept_id'])
 
 df_result.to_csv('measurement.csv', encoding='utf-8', index=False)
 
@@ -257,19 +330,5 @@ df_result.to_csv('measurement.csv', encoding='utf-8', index=False)
 #     else:
 #         value_as_concept_id = None
 #
-#     data49.append([measurement_id, person_id, measurement_concept_id, measurement_date, measurement_type_concept_id, value_as_concept_id])
+#     data.append([measurement_id, person_id, measurement_concept_id, measurement_date, measurement_type_concept_id, value_as_concept_id])
 #
-# df_result = pd.DataFrame(data49, columns=['measurement_id', 'person_id', 'measurement_concept_id', 'measurement_date', 'measurement_type_concept_id', 'value_as_concept_id'])
-#
-# df_result.to_csv('measurement49.csv', encoding='utf-8', index=False)
-#
-#
-#
-
-
-# df = pd.concat(map(pd.read_csv, [
-#                'measurement2.csv', 'measurement8.csv', 'measurement17.csv']), ignore_index=True)
-# df.to_csv('measurement.csv', encoding='utf-8', index=False)
-
-
-# # 'measurement2.csv',
