@@ -1,5 +1,6 @@
 # from asyncio.windows_events import NULL
 # from curses.ascii import NULL
+import string
 import pandas as pd
 from datetime import datetime
 
@@ -8,18 +9,18 @@ person_table = pd.read_csv("person.csv")
 
 # visit detail :
 visit_detail_table = pd.read_csv("visit_detail.csv")
-df_visit_detail_table = pd.DataFrame(visit_detail_table ,columns=['visit_detail_id', 'person_id','visit_occurrence_id', 'visit_detail_start_datetime', 'visit_detail_end_datetime'])
+# df_visit_detail_table = pd.DataFrame(visit_detail_table ,columns=['visit_detail_id', 'person_id','visit_occurrence_id', 'visit_detail_start_datetime', 'visit_detail_end_datetime'])
 
 # visit occurrence :
 visit_occurrence_table = pd.read_csv("visit_occurrence.csv")
-df_visit_occurrence_table= pd.DataFrame(visit_occurrence_table ,columns=['visit_occurrence_id','visit_start_datetime'])
+# df_visit_occurrence_table= pd.DataFrame(visit_occurrence_table ,columns=['visit_occurrence_id','visit_start_datetime'])
 
 
 # table 2 - מעבדות ילודים
 source_table = pd.read_csv("2.csv")
 concept_id_table_2 = pd.read_csv("table2_measurement.csv")
-df_concept_id_table_2 = pd.DataFrame(concept_id_table_2, columns=[
-                                     'rep_component_name', 'concept'])
+# df_concept_id_table_2 = pd.DataFrame(concept_id_table_2, columns=[
+                                    #  'rep_component_name', 'concept'])
 
 data = []
 index = 1
@@ -36,45 +37,75 @@ provider_id = ""
 for index_row, row in source_table.iterrows():
 
     #check if person exists in person
-    person_id = row[0]
-    match_person = person_table.loc[person_table['person_id'] == person_id]
-    if match_person.empty:
-        continue
+    # try:
+    try:
+        person_id = int(row[0])
+        match_person = person_table.loc[person_table['person_id'] == person_id]
+        if match_person.empty:
+            continue
+    except:
+        continue    
 
     measurement_id = index
-    visit_occurrence_id = row[1]  # Event baznat
+    visit_occurrence_id = int(row[1])  # Event baznat
     match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] ==
                                                         visit_occurrence_id]
     if match_visit_occurrence.empty:
-        visit_occurrence_id = None
+        continue
+        # visit_occurrence_id = ""
 
-    if row[7] == '':
-        if visit_occurrence_table['visit_occurrence_id'] == visit_occurrence_id:
-            measurement_date = visit_occurrence_table['visit_start_date'].value
-        else:
-            measurement_date= datetime.datetime(1999, 1, 1)
+    if row[7] == "" or pd.isna(row[7]):
+        # row_for_date = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == visit_occurrence_id]
+
+        measurement_datetime =datetime.strptime(match_visit_occurrence['visit_start_datetime'].values[0], '%Y-%m-%d %H:%M:%S')
+        # date_start = datetime.strptime(row_for_date['visit_occurrence_id'].values[0], '%d/%m/%Y %H:%M:%S')
+        measurement_date = measurement_datetime.date()
+        # condition_start_date = date_start.date()
+
+
+        # if visit_occurrence_table['visit_occurrence_id'] == visit_occurrence_id:
+        #     measurement_date = visit_occurrence_table['visit_start_date'].value
+        # else:
+        #     measurement_date= datetime.datetime(1999, 1, 1)
 
     else:
-        str_date = str(row[7])
+    
         try:
-            date_m = datetime.strptime(str_date, '%d/%m/%Y %H:%M:%S')
+            measurement_datetime = datetime.strptime(row[7], '%d/%m/%Y %H:%M')
+        #     measurement_datetime = datetime.strptime(row[7], '%d/%m/%Y %H:%M:%S')
         except:
-            date_m = datetime.strptime(str_date, '%d/%m/%Y %H:%M')
+            measurement_datetime = datetime.strptime(row[8], '%d/%m/%Y %H:%M')
 
-    measurement_date = date_m.date()
-    measurement_datetime = date_m
+        # date_start = datetime.strptime(row[14], '%m/%d/%Y %H:%M:%S %p')
+        # condition_start_date = date_start.date()
+        measurement_date = measurement_datetime.date()
+
+        # str_date = str(row[7])
+        # try:
+        #     date_m = datetime.strptime(str_date, '%d/%m/%Y %H:%M:%S')
+        # except:
+        #     date_m = datetime.strptime(str_date, '%d/%m/%Y %H:%M')
+
+    
+    # measurement_datetime = date_m
 
     measurement_type_concept_id = LABORATORY  # unit , where the Measurement record was recorded
 
     # name of measurement by concept id
     measurement_concept_id = 0
-    match = df_concept_id_table_2.loc[df_concept_id_table_2['rep_component_name']
-                                      == row["rep_component_name"]]
-    if match.shape[0] > 0:
-        measurement_concept_id = match.values[0][1]
+    match = concept_id_table_2.loc[concept_id_table_2['rep_component_name']
+                                      == row['rep_component_name']]
+    if not match.empty:
+        try:
+            measurement_concept_id = int(match['code'].values[0])
+        except:
+            measurement_concept_id = 0
+    try:
+        value_as_number = float(row[8])
+    except:
+        value_as_number=""
 
-    value_as_number = row[8]
-    value_as_concept_id = ""
+    value_as_concept_id = 0
 
     measurement_source_value = row[4]
     measurement_source_concept_id = 0
@@ -82,10 +113,17 @@ for index_row, row in source_table.iterrows():
     unit_source_value = row[2]
     value_source_value = row[8]
 
-    measurement_event_id = ""
-    meas_event_field_concept_id = ""
-    unit_source_concept_id = ""
-    visit_detail_id = ""
+    measurement_event_id = ''
+    meas_event_field_concept_id = ''
+    unit_source_concept_id = ''
+    
+    match_visit_detail = visit_detail_table.loc[
+        visit_detail_table['visit_occurrence_id'] == visit_occurrence_id]
+    if not match_visit_occurrence.empty:
+        try:
+            visit_detail_id = match_visit_detail["visit_detail_id"].values[0]
+        except:
+            visit_detail_id = ''
 
     data.append([measurement_id, person_id, measurement_concept_id, measurement_date, measurement_datetime,
                  measurement_time, measurement_type_concept_id,operator_concept_id,value_as_number,
@@ -138,7 +176,7 @@ for index_row, row in source_table.iterrows():
     measurement_datetime = 0
     measurement_date = 0
 
-    match_visit_occurrence = df_visit_occurrence_table.loc[df_visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    match_visit_occurrence = visit_occurrence_table.loc[visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
     if match_visit_occurrence.shape[0] > 0 :
         visit_occurrence_id = row["Event_baznat"]
         date_m = match_visit_occurrence['visit_start_datetime']
@@ -152,7 +190,7 @@ for index_row, row in source_table.iterrows():
     value_as_number = ''
 
     if measurement_concept_id != COLOR:
-        value_as_number = row[4]
+        value_as_number = float(row[4])
     elif row[4].__contains__('ורוד'):
         value_as_concept_id = 304230005
     elif row[4].__contains__('כחול') or row[4].__contains__('כחלחל'):
@@ -187,7 +225,15 @@ for index_row, row in source_table.iterrows():
     measurement_event_id = ""
     meas_event_field_concept_id = ""
     unit_source_concept_id = ""
-    visit_detail_id = ""
+    
+    match_visit_detail = visit_detail_table.loc[
+        visit_detail_table['visit_occurrence_id'] == visit_occurrence_id]
+    visit_detail_id=''    
+    if not match_visit_detail.empty:
+        try:
+            visit_detail_id = match_visit_detail["visit_detail_id"].values[0]
+        except:
+            visit_detail_id=''  
 
     data.append([measurement_id, person_id, measurement_concept_id, measurement_date, measurement_datetime,
                  measurement_time, measurement_type_concept_id,operator_concept_id,value_as_number,
@@ -235,19 +281,21 @@ for index_row, row in source_table.iterrows():
     measurement_datetime = 0
     measurement_date = 0
 
-    match_visit_occurrence = df_visit_occurrence_table.loc[
-        df_visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    match_visit_occurrence = visit_occurrence_table.loc[
+        visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
     if match_visit_occurrence.shape[0] > 0:
         visit_occurrence_id = row["Event_baznat"]
     else:
         visit_occurrence_id = ''
 
-    match_visit_detail = df_visit_detail_table.loc[
-        df_visit_detail_table['visit_occurrence_id'] == row["Event_baznat"]]
-    if match_visit_occurrence.shape[0] > 0:
-        visit_detail_id = match_visit_detail["visit_detail_id"]
-    else:
-        visit_detail_id = ''
+    match_visit_detail = visit_detail_table.loc[
+        visit_detail_table['visit_occurrence_id'] == visit_occurrence_id]
+    visit_detail_id=''    
+    if not match_visit_detail.empty:
+        try:
+            visit_detail_id = match_visit_detail["visit_detail_id"].values[0]
+        except:
+            visit_detail_id=''  
 
     try:
         str_date = str(row[4])
@@ -269,7 +317,7 @@ for index_row, row in source_table.iterrows():
     elif row[5] == 'high':
         value_as_concept_id = 4084765  # Above reference range
     else:
-        value_as_number = row[5]
+        value_as_number = float(row[5])
 
     measurement_source_value = row[3]
     measurement_source_concept_id = 0
