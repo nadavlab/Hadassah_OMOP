@@ -45,13 +45,13 @@
 
 ## connections
 ### Connections during project execution: 
-•	Connection to the university's remote server:
+•	Connection guide to ATLAS and postgreSQL server:
     
     • connect to BGU VPN with personal code.
     
-    • connect to remote server threw VM with personal password.
+    • connect to postgreSQL server with the URL:[link to script] (http://132.72.65.168:5050/browser/).
     
-    • connect to data base in postgreSQL server threw the remote server.
+    • connect to ATLAS application with the URL:[link to script] http://132.72.65.168:8080/atlas/).
 
 • Perform the steps for connecting the desired consent from the PostgreSQL server To Atlas According to the Git - https://github.com/OHDSI/WebAPI/wiki/CDMConfiguration:
     •	Creating 2 new schemas on the Postgres server, each schema will be used for a different rule. 
