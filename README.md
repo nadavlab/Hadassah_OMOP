@@ -40,14 +40,17 @@
     •	Upload each table individually to the database using a script built in Python.
       [link to script] (https://github.com/nadavlab/Hadassah_OMOP/blob/main/Sql%20Scripts/upload_data.py)
 
-  •	Build constraints using a SQL script on each table.
-    [link to script] (https://github.com/nadavlab/Hadassah_OMOP/blob/main/Sql%20Scripts/omop_constraints_load.sql)
+    •	Build constraints using a SQL script on each table.
+      [link to script] (https://github.com/nadavlab/Hadassah_OMOP/blob/main/Sql%20Scripts/omop_constraints_load.sql)
 
 ## connections
 ### Connections during project execution: 
 •	Connection to the university's remote server:
+    
     • connect to BGU VPN with personal code.
+    
     • connect to remote server threw VM with personal password.
+    
     • connect to data base in postgreSQL server threw the remote server.
 
 • Perform the steps for connecting the desired consent from the PostgreSQL server To Atlas According to the Git - https://github.com/OHDSI/WebAPI/wiki/CDMConfiguration:
