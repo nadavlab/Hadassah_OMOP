@@ -49,9 +49,9 @@
     
     • connect to BGU VPN with personal code.
     
-    • connect to postgreSQL server with the URL:[link to script] (http://132.72.65.168:5050/browser/).
+    • connect to postgreSQL server with the URL:[link to URL] (http://132.72.65.168:5050/browser/).
     
-    • connect to ATLAS application with the URL:[link to script] http://132.72.65.168:8080/atlas/).
+    • connect to ATLAS application with the URL:[link to URL] http://132.72.65.168:8080/atlas/).
 
 • Perform the steps for connecting the desired consent from the PostgreSQL server To Atlas According to the Git - https://github.com/OHDSI/WebAPI/wiki/CDMConfiguration:
     •	Creating 2 new schemas on the Postgres server, each schema will be used for a different rule. 
