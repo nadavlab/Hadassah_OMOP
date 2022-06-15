@@ -15,6 +15,7 @@
 •	Running the docker Multiple containers Using the tool compose.
 
 •	Editing the configuration files:
+    
     •	 Of the container that runs the server so that the login information matches the database Hadassah Which is on the PostgreSQL server.
   
     •	Of the container running the webAPI of OHDSI And entering the link address to ATLAS Via the remote server: http://132.72.65.168:8080/atlas/.
