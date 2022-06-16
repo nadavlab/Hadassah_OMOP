@@ -27,7 +27,7 @@ def is_exist_visit_occurrence_id(event_baznat):
     if match_visit_occurrence.shape[0] > 0:
         return event_baznat
     else:
-        return 0
+        return ''
 
 
 def is_exist_person_id(id_baznat):
@@ -52,6 +52,8 @@ def is_exist_visit_detail(id_baznat,record_date):
     else:
         return ''
 
+
+
 # _________________________________table 58_________________________________________
 source_table = pd.read_csv('58.csv')
 data = []
@@ -74,7 +76,7 @@ source_table['stop_reason'] = ""
 source_table['refills'] = 0
 source_table['route_concept_id'] = 0
 source_table['lot_number'] = ""
-source_table['provider_id'] = 0
+source_table['provider_id'] = None
 source_table['visit_detail_id'] = 0
 source_table['drug_source_concept_id'] = 0
 source_table['route_source_value'] = ""
@@ -176,7 +178,7 @@ df_result = pd.DataFrame(data, columns=["drug_exposure_id", "person_id", 'drug_c
 'drug_type_concept_id', 'stop_reason', 'quantity', "days_supply", "sig",'route_concept_id','lot_number', 'provider_id', 'visit_occurrence_id', 'visit_detail_id', 'drug_source_value', 'drug_source_concept_id', 'route_source_value', 'dose_unit_source_value'])
 
 
-source_table_doc.to_csv(r'C:\Users\ayalon\Desktop\data of project\data_white_rabbit\58.csv', encoding='utf-8', index=False)##musttttttttt
+source_table_doc.to_csv(r'58.csv', encoding='utf-8', index=False)##musttttttttt
 
 
 # //___________________table 78________________________________________
@@ -201,7 +203,7 @@ source_table['stop_reason'] = ""
 source_table['refills'] = 0
 source_table['route_concept_id'] = 0
 source_table['lot_number'] = ""
-source_table['provider_id'] = 0
+source_table['provider_id'] = None
 source_table['visit_detail_id'] = 4140387
 source_table['drug_source_concept_id'] = 0
 source_table['route_source_value'] = ""
@@ -302,7 +304,7 @@ df_result_78 = pd.DataFrame(data, columns=["drug_exposure_id", "person_id", 'dru
 'drug_type_concept_id', 'stop_reason', 'quantity', "days_supply", "sig",'route_concept_id','lot_number', 'provider_id', 'visit_occurrence_id', 'visit_detail_id', 'drug_source_value', 'drug_source_concept_id', 'route_source_value', 'dose_unit_source_value'])
 
 
-source_table_doc.to_csv(r'C:\Users\ayalon\Desktop\data of project\data_white_rabbit\78.csv', encoding='utf-8', index=False)##musttttttttt
+source_table_doc.to_csv(r'78.csv', encoding='utf-8', index=False)##musttttttttt
 
 df_result = df_result.append(df_result_78, ignore_index=True)
 
@@ -330,7 +332,7 @@ source_table['stop_reason'] = ""
 source_table['refills'] = 0
 source_table['route_concept_id'] = 0
 source_table['lot_number'] = ""
-source_table['provider_id'] = 0
+source_table['provider_id'] = None
 source_table['visit_detail_id'] = 4140387
 source_table['drug_source_concept_id'] = 0
 source_table['route_source_value'] = ""
@@ -432,7 +434,7 @@ df_result_85 = pd.DataFrame(data, columns=["drug_exposure_id", "person_id", 'dru
 'drug_type_concept_id', 'stop_reason', 'quantity', "days_supply", "sig",'route_concept_id','lot_number', 'provider_id', 'visit_occurrence_id', 'visit_detail_id', 'drug_source_value', 'drug_source_concept_id', 'route_source_value', 'dose_unit_source_value'])
 
 
-source_table_doc.to_csv(r'C:\Users\ayalon\Desktop\data of project\data_white_rabbit\85.csv', encoding='utf-8', index=False)##musttttttttt
+source_table_doc.to_csv(r'85.csv', encoding='utf-8', index=False)##musttttttttt
 
 
 df_result = df_result.append(df_result_85, ignore_index=True)
@@ -465,7 +467,7 @@ source_table['days_supply'] = 0
 source_table['sig'] = ""
 source_table['route_concept_id'] = 0
 source_table['lot_number'] = ""
-source_table['provider_id'] = 0
+source_table['provider_id'] = None
 source_table['visit_detail_id'] = 4140387
 source_table['drug_source_concept_id'] = 0
 source_table['route_source_value'] = ""
@@ -529,7 +531,7 @@ for index_row, row in source_table.iterrows():
 df_result_57 = pd.DataFrame(data, columns=["drug_exposure_id", "person_id", 'drug_concept_id',"drug_exposure_start_date",'drug_exposure_start_datetime','drug_exposure_end_datetime',"drug_exposure_end_date",'verbatim_end_date', 'refills',
 'drug_type_concept_id', 'stop_reason', 'quantity', "days_supply", "sig",'route_concept_id','lot_number', 'provider_id', 'visit_occurrence_id', 'visit_detail_id', 'drug_source_value', 'drug_source_concept_id', 'route_source_value', 'dose_unit_source_value'])
 
-source_table_doc.to_csv(r'C:\Users\ayalon\Desktop\data of project\data_white_rabbit\57.csv', encoding='utf-8', index=False)##musttttttttt
+source_table_doc.to_csv(r'57.csv', encoding='utf-8', index=False)##musttttttttt
 
 
 df_result = df_result.append(df_result_57, ignore_index=True)
@@ -561,7 +563,7 @@ source_table['days_supply'] = 0
 source_table['sig'] = ""
 source_table['route_concept_id'] = 0
 source_table['lot_number'] = ""
-source_table['provider_id'] = 0
+source_table['provider_id'] = None
 source_table['visit_detail_id'] = 4140387
 source_table['drug_source_concept_id'] = 0
 source_table['route_source_value'] = ""
@@ -625,7 +627,7 @@ for index_row, row in source_table.iterrows():
 df_result_69 = pd.DataFrame(data, columns=["drug_exposure_id", "person_id", 'drug_concept_id',"drug_exposure_start_date",'drug_exposure_start_datetime','drug_exposure_end_datetime',"drug_exposure_end_date",'verbatim_end_date', 'refills',
 'drug_type_concept_id', 'stop_reason', 'quantity', "days_supply", "sig",'route_concept_id','lot_number', 'provider_id', 'visit_occurrence_id', 'visit_detail_id', 'drug_source_value', 'drug_source_concept_id', 'route_source_value', 'dose_unit_source_value'])
 
-source_table_doc.to_csv(r'C:\Users\ayalon\Desktop\data of project\data_white_rabbit\69.csv', encoding='utf-8', index=False)##musttttttttt
+source_table_doc.to_csv(r'69.csv', encoding='utf-8', index=False)##musttttttttt
 
 
 df_result = df_result.append(df_result_69, ignore_index=True)
@@ -655,7 +657,7 @@ source_table['days_supply'] = 0
 source_table['sig'] = ""
 source_table['route_concept_id'] = 0
 source_table['lot_number'] = ""
-source_table['provider_id'] = 0
+source_table['provider_id'] = None
 source_table['visit_detail_id'] = 4140387
 source_table['drug_source_concept_id'] = 0
 source_table['route_source_value'] = ""
@@ -720,7 +722,7 @@ for index_row, row in source_table.iterrows():
 df_result_75 = pd.DataFrame(data, columns=["drug_exposure_id", "person_id", 'drug_concept_id',"drug_exposure_start_date",'drug_exposure_start_datetime','drug_exposure_end_datetime',"drug_exposure_end_date",'verbatim_end_date', 'refills',
 'drug_type_concept_id', 'stop_reason', 'quantity', "days_supply", "sig",'route_concept_id','lot_number', 'provider_id', 'visit_occurrence_id', 'visit_detail_id', 'drug_source_value', 'drug_source_concept_id', 'route_source_value', 'dose_unit_source_value'])
 
-source_table_doc.to_csv(r'C:\Users\ayalon\Desktop\data of project\data_white_rabbit\75.csv', encoding='utf-8', index=False)##musttttttttt
+source_table_doc.to_csv(r'75.csv', encoding='utf-8', index=False)##musttttttttt
 
 
 # df_result = df_result.append(df_result_75, ignore_index=True)
@@ -750,7 +752,7 @@ source_table['days_supply'] = 0
 source_table['sig'] = ""
 source_table['route_concept_id'] = 0
 source_table['lot_number'] = ""
-source_table['provider_id'] = 0
+source_table['provider_id'] = None
 source_table['visit_detail_id'] = 4140387
 source_table['drug_source_concept_id'] = 0
 source_table['route_source_value'] = ""
@@ -820,7 +822,7 @@ source_table_doc.to_csv(r'C:\Users\ayalon\Desktop\data of project\data_white_rab
 df_result = df_result.append(df_result_82, ignore_index=True)
 
 
-df_result.to_csv(r'C:\Users\ayalon\Desktop\data of project\data_white_rabbit\drug_exposure.csv', encoding='utf-8', index=False)##musttttttttt
+df_result.to_csv(r'drug_exposure.csv', encoding='utf-8', index=False)##musttttttttt
 
 
 

@@ -15,6 +15,7 @@
 •	Running the docker Multiple containers Using the tool compose.
 
 •	Editing the configuration files:
+    
     •	 Of the container that runs the server so that the login information matches the database Hadassah Which is on the PostgreSQL server.
   
     •	Of the container running the webAPI of OHDSI And entering the link address to ATLAS Via the remote server: http://132.72.65.168:8080/atlas/.
@@ -40,12 +41,18 @@
     •	Upload each table individually to the database using a script built in Python.
       [link to script] (https://github.com/nadavlab/Hadassah_OMOP/blob/main/Sql%20Scripts/upload_data.py)
 
-  •	Build constraints using a SQL script on each table.
-    [link to script] (https://github.com/nadavlab/Hadassah_OMOP/blob/main/Sql%20Scripts/omop_constraints_load.sql)
+    •	Build constraints using a SQL script on each table.
+      [link to script] (https://github.com/nadavlab/Hadassah_OMOP/blob/main/Sql%20Scripts/omop_constraints_load.sql)
 
 ## connections
 ### Connections during project execution: 
-•	Connection to the university's remote server
+•	Connection guide to ATLAS and postgreSQL server:
+    
+    • connect to BGU VPN with personal code.
+    
+    • connect to postgreSQL server with the URL:[link to URL] (http://132.72.65.168:5050/browser/).
+    
+    • connect to ATLAS application with the URL:[link to URL] http://132.72.65.168:8080/atlas/).
 
 • Perform the steps for connecting the desired consent from the PostgreSQL server To Atlas According to the Git - https://github.com/OHDSI/WebAPI/wiki/CDMConfiguration:
     •	Creating 2 new schemas on the Postgres server, each schema will be used for a different rule. 
