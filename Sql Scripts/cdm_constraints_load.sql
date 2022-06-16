@@ -1,13 +1,13 @@
 --postgresql CDM Foreign Key Constraints for OMOP Common Data Model 5.4
-ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_gender_concept_id FOREIGN KEY (gender_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
-ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_race_concept_id FOREIGN KEY (race_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
-ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_ethnicity_concept_id FOREIGN KEY (ethnicity_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
-ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_location_id FOREIGN KEY (location_id) REFERENCES omop_demo.LOCATION (LOCATION_ID);
-ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_provider_id FOREIGN KEY (provider_id) REFERENCES omop_demo.PROVIDER (PROVIDER_ID);
-ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_care_site_id FOREIGN KEY (care_site_id) REFERENCES omop_demo.CARE_SITE (CARE_SITE_ID);
-ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_gender_source_concept_id FOREIGN KEY (gender_source_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
-ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_race_source_concept_id FOREIGN KEY (race_source_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
-ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_ethnicity_source_concept_id FOREIGN KEY (ethnicity_source_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
+-- ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_gender_concept_id FOREIGN KEY (gender_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
+-- ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_race_concept_id FOREIGN KEY (race_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
+-- ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_ethnicity_concept_id FOREIGN KEY (ethnicity_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
+-- ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_location_id FOREIGN KEY (location_id) REFERENCES omop_demo.LOCATION (LOCATION_ID);
+-- ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_provider_id FOREIGN KEY (provider_id) REFERENCES omop_demo.PROVIDER (PROVIDER_ID);
+-- ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_care_site_id FOREIGN KEY (care_site_id) REFERENCES omop_demo.CARE_SITE (CARE_SITE_ID);
+-- ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_gender_source_concept_id FOREIGN KEY (gender_source_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
+-- ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_race_source_concept_id FOREIGN KEY (race_source_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
+-- ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_ethnicity_source_concept_id FOREIGN KEY (ethnicity_source_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
 -- ALTER TABLE omop_demo.OBSERVATION_PERIOD ADD CONSTRAINT fpk_OBSERVATION_PERIOD_person_id FOREIGN KEY (person_id) REFERENCES omop_demo.PERSON (PERSON_ID);
 -- ALTER TABLE omop_demo.OBSERVATION_PERIOD ADD CONSTRAINT fpk_OBSERVATION_PERIOD_period_type_concept_id FOREIGN KEY (period_type_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
 -- ALTER TABLE omop_demo.VISIT_OCCURRENCE ADD CONSTRAINT fpk_VISIT_OCCURRENCE_person_id FOREIGN KEY (person_id) REFERENCES omop_demo.PERSON (PERSON_ID);
@@ -16,8 +16,8 @@ ALTER TABLE omop_demo.PERSON ADD CONSTRAINT fpk_PERSON_ethnicity_source_concept_
 -- ALTER TABLE omop_demo.VISIT_OCCURRENCE ADD CONSTRAINT fpk_VISIT_OCCURRENCE_provider_id FOREIGN KEY (provider_id) REFERENCES omop_demo.PROVIDER (PROVIDER_ID);
 -- ALTER TABLE omop_demo.VISIT_OCCURRENCE ADD CONSTRAINT fpk_VISIT_OCCURRENCE_care_site_id FOREIGN KEY (care_site_id) REFERENCES omop_demo.CARE_SITE (CARE_SITE_ID);
 -- ALTER TABLE omop_demo.VISIT_OCCURRENCE ADD CONSTRAINT fpk_VISIT_OCCURRENCE_visit_source_concept_id FOREIGN KEY (visit_source_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
--- ALTER TABLE omop_demo.VISIT_OCCURRENCE ADD CONSTRAINT fpk_VISIT_OCCURRENCE_admitted_from_concept_id FOREIGN KEY (admitted_from_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
--- ALTER TABLE omop_demo.VISIT_OCCURRENCE ADD CONSTRAINT fpk_VISIT_OCCURRENCE_discharged_to_concept_id FOREIGN KEY (discharged_to_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
+-- ALTER TABLE omop_demo.VISIT_OCCURRENCE ADD CONSTRAINT fpk_VISIT_OCCURRENCE_admitted_from_concept_id FOREIGN KEY (admitting_source_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
+-- ALTER TABLE omop_demo.VISIT_OCCURRENCE ADD CONSTRAINT fpk_VISIT_OCCURRENCE_discharged_to_concept_id FOREIGN KEY (discharge_to_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
 -- ALTER TABLE omop_demo.VISIT_OCCURRENCE ADD CONSTRAINT fpk_VISIT_OCCURRENCE_preceding_visit_occurrence_id FOREIGN KEY (preceding_visit_occurrence_id) REFERENCES omop_demo.VISIT_OCCURRENCE (VISIT_OCCURRENCE_ID);
 -- ALTER TABLE omop_demo.VISIT_DETAIL ADD CONSTRAINT fpk_VISIT_DETAIL_person_id FOREIGN KEY (person_id) REFERENCES omop_demo.PERSON (PERSON_ID);
 -- ALTER TABLE omop_demo.VISIT_DETAIL ADD CONSTRAINT fpk_VISIT_DETAIL_visit_detail_concept_id FOREIGN KEY (visit_detail_concept_id) REFERENCES omop_demo.CONCEPT (CONCEPT_ID);
