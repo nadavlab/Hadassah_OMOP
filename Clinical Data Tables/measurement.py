@@ -287,7 +287,8 @@ for index_row, row in source_table.iterrows():
     elif row[3].__contains__('glucocheck'):
         measurement_concept_id = GLUCOCHECK
     else:
-        measurement_concept_id = None
+        measurement_concept_id = 0
+
 
     measurement_datetime = 0
     measurement_date = 0
