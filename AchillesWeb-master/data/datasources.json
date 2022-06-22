@@ -1,0 +1,5 @@
+{
+  "datasources": [
+    { "name": "Hadassah", "folder": "achillesOut", "cdmVersion": 5.4 }
+  ]
+}
