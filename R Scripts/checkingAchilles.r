@@ -7,7 +7,6 @@ library(Achilles)
 library(DatabaseConnector)
 
 downloadJdbcDrivers(dbms = "postgresql", pathToDriver = "~/")
-
 connectionDetails <- createConnectionDetails(
   dbms = "postgresql",
   server = "132.72.65.168/Hadassah", 
@@ -17,14 +16,21 @@ connectionDetails <- createConnectionDetails(
   pathToDriver = "~/"
 )
 
+cdmDbSchema <- "omop_demo"
+cdmVersion <- "5.4"
 
 achilles(connectionDetails,
-  cdmDatabaseSchema = "omop_demo",
+  cdmDatabaseSchema = cdmDbSchema,
   resultsDatabaseSchema = "results",
-  # scratchDatabaseSchema = "scratch",
-  # numThreads = 1,
-  outputFolder = "./Output"
+  outputFolder = "./Output",
+  cdmVersion = cdmVersion
 )
+
+
+# exportToJson(connectionDetails,
+#              cdmDatabaseSchema = cdmDbSchema,
+#              resultsDatabaseSchema = "results",
+#              outputPath = "achillesOut")
 
 
 
@@ -34,9 +40,3 @@ createIndices(
   outputFolder = "./Output"
 )
 
-
-
-# dropAllScratchTables(
-#   connectionDetails = connectionDetails,
-#   scratchDatabaseSchema = "scratch", numThreads = 5, outputFolder = "output/"
-# )

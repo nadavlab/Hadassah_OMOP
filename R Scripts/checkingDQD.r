@@ -7,21 +7,28 @@ library(ParallelLogger)
 
 downloadJdbcDrivers(dbms='postgresql', pathToDriver='~/')
 
-connectionDetails <- createConnectionDetails(dbms='postgresql', server='132.72.65.168/Hadassah', user='postgres', password='ayalonA3', port='5432', pathToDriver='~/')
+connectionDetails <- createConnectionDetails(
+  dbms = "postgresql",
+  server = "132.72.65.168/Hadassah", 
+  user = "postgres", 
+  password = "ayalonA3", 
+  port = "5432", 
+  pathToDriver = "~/"
+)
 
 
 
-cdmDatabaseSchema <- "mimic" # the fully qualified database schema name of the CDM
+cdmDatabaseSchema <- "omop_demo" # the fully qualified database schema name of the CDM
 resultsDatabaseSchema <- "results" # the fully qualified database schema name of the results schema (that you can write to)
-cdmSourceName <- "CDM mimic v1" # a human readable name for your CDM source
-
+cdmSourceName <- "CDM_Hadassha_v1" # a human readable name for your CDM source
+cdmVersion <- "5.4"
 numThreads <- 1 # on Redshift, 3 seems to work well
 
 # specify if you want to execute the queries or inspect them ------------------------------------------
 sqlOnly <- FALSE # set to TRUE if you just want to get the SQL scripts and not actually run the queries
 
 # where should the logs go? -------------------------------------------------------------------------
-outputFolder <- "output"
+outputFolder <- "Output"
 outputFile <- "results.json"
 
 
@@ -44,7 +51,8 @@ tablesToExclude <- c()
 DataQualityDashboard::executeDqChecks(connectionDetails = connectionDetails, 
                                     cdmDatabaseSchema = cdmDatabaseSchema, 
                                     resultsDatabaseSchema = resultsDatabaseSchema,
-                                    cdmSourceName = cdmSourceName, 
+                                    cdmSourceName = cdmSourceName,
+                                    cdmVersion = cdmVersion, 
                                     numThreads = numThreads,
                                     sqlOnly = sqlOnly, 
                                     outputFolder = outputFolder, 
@@ -65,5 +73,8 @@ DataQualityDashboard::writeJsonResultsToTable(connectionDetails = connectionDeta
                                             resultsDatabaseSchema = resultsDatabaseSchema, 
                                             jsonFilePath = jsonFilePath)
 
-DataQualityDashboard::viewDqDashboard(
-  jsonPath = file.path(getwd(), outputFolder, cdmSourceName, outputFile, cdmSourceName))
+DataQualityDashboard::viewDqDashboard(jsonPath = file.path(
+  getwd(),
+  outputFolder, 
+  outputFile
+))
