@@ -1,13 +1,13 @@
-﻿אופן פקיעת קרומים,count,concept
-AROM,2,408816000
-AROM - שארית שלפוחית,22,408816000
-Amniotomy / Artificial Rupture Of Membranes - AROM,1013,408816000
-Membranes Not Ruptured until Delivery,11,249179007
-Other Rupture of Membranes,1,169734005
-PPROM,182,44223004
-PROM,259,44223004
-Rupture of Membranes Following Therap/Diag Procedu,2,408816000
-Rupture of Membranes Following Vaginal Examination,38,408816000
-Spontaneous Rupture Of Membranes - SROM,12727,169734005
-Suspected Rupture Of Membranes,36,415684004 + 169734005
-Unknown Time of Ruptured Membranes,5,169734005
+﻿אופן פקיעת קרומים,count,concept,cp
+AROM,2,408816000,4254204
+AROM - שארית שלפוחית,22,408816000,4254204
+Amniotomy / Artificial Rupture Of Membranes - AROM,1013,408816000,4254204
+Membranes Not Ruptured until Delivery,11,249179007,4096526
+Other Rupture of Membranes,1,169734005,4015143
+PPROM,182,44223004,194702
+PROM,259,44223004,194702
+Rupture of Membranes Following Therap/Diag Procedu,2,408816000,4254204
+Rupture of Membranes Following Vaginal Examination,38,408816000,4254204
+Spontaneous Rupture Of Membranes - SROM,12727,169734005,4015143
+Suspected Rupture Of Membranes,36,415684004 + 169734005,4015143 + 4217851
+Unknown Time of Ruptured Membranes,5,169734005,4015143

@@ -7,6 +7,7 @@ from num2words import num2words
 # Tables 24,25,26,29,52,59,61
 #
 
+
 ### visit detail : ####
 visit_detail_table = pd.read_csv("visit_detail.csv")
 df_visit_detail_table = pd.DataFrame(visit_detail_table ,
@@ -21,7 +22,7 @@ df_visit_occurrence_table = pd.DataFrame(visit_occurrence_table , columns=['visi
 df_person = pd.read_csv("person.csv")
 
 data = []
-index = 0
+index = 1
 EHR_CONCEPT_ID = 32817
 MATERNITY_CLINIC = 4190427
 
@@ -80,8 +81,7 @@ def is_exsit_person_id(id_baznat):
 
 #### 24 table ###
 source_table = pd.read_csv("24.csv")
-terms_table = pd.read_csv("24_Usagi.csv")
-df_terms_table = pd.DataFrame(terms_table , columns=['sourceCode' , 'SNOMED'])
+df_terms_table = pd.read_csv("24_Usagi.csv")
 
 for index_row , row in source_table.iterrows() :
     if is_exsit_person_id(row['ID_BAZNAT']) == True:
@@ -102,16 +102,13 @@ for index_row , row in source_table.iterrows() :
         visit_detail_id = is_exsit_visit_detail_id(visit_occurrence_id)
 
     value_as_number = ''
-    value_as_string = ''
     value_as_concept_id = ''
     unit_concept_id = MATERNITY_CLINIC
 
     if str(row["סיבה עיקרית"]) and row["סיבה עיקרית"] != '-1' :
-        if row["סיבה עיקרית"] == 'מעקב הריון עודף':
-            observation_concept_id = 22281000119101
-        else:
+            value_as_string = row["סיבה עיקרית"]
             match_visit_occurrence = df_terms_table.loc[df_terms_table['sourceCode'] == row["סיבה עיקרית"]]
-            value = match_visit_occurrence.values[0][1]
+            value = match_visit_occurrence.values[0][3]
             list_observation = value.split('+')
             index_concepts = 0
             while len(list_observation) > index_concepts :
@@ -122,43 +119,55 @@ for index_row , row in source_table.iterrows() :
                 index_concepts += 1
                 index += 1
 
+df_result = pd.DataFrame(data ,
+                         columns=["observation_id" , "person_id" , "observation_concept_id" , "observation_date" ,
+                                  "observation_datetime" , "observation_type_concept_id" ,
+                                  "value_as_number" , "value_as_string" , "value_as_concept_id" ,
+                                  "qualifier_concept_id" , "unit_concept_id" , "provider_id" , "visit_occurrence_id" ,
+                                  "visit_detail_id" ,
+                                  "observation_source_value" , "observation_source_concept_id" , "unit_source_value" ,
+                                  "qualifier_source_value" , "value_source_value" , "observation_event_id" ,
+                                  "obs_event_field_concept_id"])
+
+df_result.to_csv('observation_24.csv' , encoding='utf-8' , index=False)
+data = []
+
 #### 25 table ###
 source_table = pd.read_csv("25.csv")
 
-EHR_CONCEPT_ID = 32817
 DATE_OF_LAST_NORMAL_PERIOD = 4088445
 SPONTANEOUS = 4196694
 FETUS = 40567571
-PREGNANCY_AGE = 444135009
-PREGNANCY_AGE_BY_WEEK = 366323009
+PREGNANCY_AGE = 40485048
+PREGNANCY_AGE_BY_WEEK = 432441
 
 
 class Preganancy_age_enum(Enum) :
-    TWENTY = 23464008
-    TWENTY_ONE = 41438001
-    TWENTY_TWO = 65035007
-    TWENTY_THREE = 86883006
-    TWENTY_FOUR = 313179009
-    TWENTY_FIVE = 72544005
-    TWENTY_SIX = 48688005
-    TWENTY_SEVEN = 46906003
-    TWENTY_EIGHT = 90797000
-    TWENTY_NINE = 45139008
-    THIRTY = 71355009
-    THIRTY_ONE = 64920003
-    THIRTY_TWO = 7707000
-    THIRTY_THREE = 78395001
-    THIRTY_FOUR = 13763000
-    THIRTY_FIVE = 84132007
-    THIRTY_SIX = 57907009
-    THIRTY_SEVEN = 43697006
-    THIRTY_EIGHT = 13798002
-    THIRTY_NINE = 80487005
-    FORTY = 46230007
-    FORTY_ONE = 63503002
-    FORTY_TWO = 36428009
-    FORTY_THREE = 90968009
-    FORTY_FOUR = 90968009
+    TWENTY = 4051642
+    TWENTY_ONE = 4185780
+    TWENTY_TWO = 4274955
+    TWENTY_THREE = 4336226
+    TWENTY_FOUR = 439922
+    TWENTY_FIVE = 435640
+    TWENTY_SIX = 444023
+    TWENTY_SEVEN = 432430
+    TWENTY_EIGHT = 444461
+    TWENTY_NINE = 444417
+    THIRTY = 434484
+    THIRTY_ONE = 433864
+    THIRTY_TWO = 4071503
+    THIRTY_THREE = 441678
+    THIRTY_FOUR = 443874
+    THIRTY_FIVE = 444267
+    THIRTY_SIX = 438543
+    THIRTY_SEVEN = 442355
+    THIRTY_EIGHT = 443871
+    THIRTY_NINE = 435655
+    FORTY = 444098
+    FORTY_ONE = 442769
+    FORTY_TWO = 444067
+    FORTY_THREE = 432695
+    FORTY_FOUR = 432695
 
 
 for index_row , row in source_table.iterrows() :
@@ -239,17 +248,28 @@ for index_row , row in source_table.iterrows() :
                         visit_detail_id ,
                         unit_concept_id)
             index += 1
+df_result = pd.DataFrame(data ,
+                         columns=["observation_id" , "person_id" , "observation_concept_id" , "observation_date" ,
+                                  "observation_datetime" , "observation_type_concept_id" ,
+                                  "value_as_number" , "value_as_string" , "value_as_concept_id" ,
+                                  "qualifier_concept_id" , "unit_concept_id" , "provider_id" , "visit_occurrence_id" ,
+                                  "visit_detail_id" ,
+                                  "observation_source_value" , "observation_source_concept_id" , "unit_source_value" ,
+                                  "qualifier_source_value" , "value_source_value" , "observation_event_id" ,
+                                  "obs_event_field_concept_id"])
 
+df_result.to_csv('observation_25.csv' , encoding='utf-8' , index=False)
+data = []
 #### 26 table ###
 source_table = pd.read_csv("26.csv")
 
-NUMBER_OF_PREVIOUS_PREGNANCIES = 4078008
-NUMBER_OF_BIRTHS_P = 118212000
-NUMBER_OF_ABORTIONS_A = 248989003
-NUMBER_OF_EP_EP = 440537001
+NUMBER_OF_PREVIOUS_PREGNANCIES = 4050611
+NUMBER_OF_BIRTHS_P = 4041279
+NUMBER_OF_ABORTIONS_A = 4095945
+NUMBER_OF_EP_EP = 4209345
 NUMBER_OF_CAESARS_CS = 4092787
-NUMBER_OF_LIVE_CHILDREN_LC = 248991006
-VBAC = 237313003
+NUMBER_OF_LIVE_CHILDREN_LC = 4088444
+VBAC = 4129042
 
 for index_row , row in source_table.iterrows() :
     if is_exsit_person_id(row['ID_BAZNAT']) == True:
@@ -333,18 +353,27 @@ for index_row , row in source_table.iterrows() :
         index += 1
 
 unit_concept_id = ''
+df_result = pd.DataFrame(data ,
+                         columns=["observation_id" , "person_id" , "observation_concept_id" , "observation_date" ,
+                                  "observation_datetime" , "observation_type_concept_id" ,
+                                  "value_as_number" , "value_as_string" , "value_as_concept_id" ,
+                                  "qualifier_concept_id" , "unit_concept_id" , "provider_id" , "visit_occurrence_id" ,
+                                  "visit_detail_id" ,
+                                  "observation_source_value" , "observation_source_concept_id" , "unit_source_value" ,
+                                  "qualifier_source_value" , "value_source_value" , "observation_event_id" ,
+                                  "obs_event_field_concept_id"])
 
+df_result.to_csv('observation_26.csv' , encoding='utf-8' , index=False)
+data = []
 #### 52 table ###
 source_table = pd.read_csv("52.csv")
 
-amniotic_fluid_table = pd.read_csv("amniotic_fluid.csv")
-df_amniotic_fluid = pd.DataFrame(amniotic_fluid_table , columns=['מי שפיר' , 'concept'])
+df_amniotic_fluid = pd.read_csv("amniotic_fluid.csv")
 
-membranes_rupture_table = pd.read_csv("membranes_rupture.csv")
-df_membranes_rupture_table = pd.DataFrame(membranes_rupture_table , columns=['אופן פקיעת קרומים' , 'concept'])
+df_membranes_rupture_table = pd.read_csv("membranes_rupture.csv")
 
-AMNIOTIC_FLUID_CONCEPT_ID = 40454100
-RUPTURED_MEMBRANES_CONCEPT_ID = 4224704
+AMNIOTIC_FLUID_CONCEPT_ID = 4297445
+RUPTURED_MEMBRANES_CONCEPT_ID = 4015143
 
 for index_row , row in source_table.iterrows() :
     if is_exsit_person_id(row['ID_BAZNAT']) == True:
@@ -375,12 +404,12 @@ for index_row , row in source_table.iterrows() :
     value_as_number = ''
     ################################## אופן פקיעת קרומים #################################
     if str(row["אופן פקיעת קרומים"]) :
-        value_as_string = ''
+        value_as_string = row["אופן פקיעת קרומים"]
         observation_concept_id = RUPTURED_MEMBRANES_CONCEPT_ID
         match = df_membranes_rupture_table.loc[
             df_membranes_rupture_table['אופן פקיעת קרומים'] == row["אופן פקיעת קרומים"]]
         if match.shape[0] > 0 :
-            value = match.values[0][1]
+            value = match.values[0][3]
             list_observation = value.split('+')
             index_concepts = 0
             while len(list_observation) > index_concepts :
@@ -394,28 +423,39 @@ for index_row , row in source_table.iterrows() :
 
     ######################################### מי שפיר #####################################
     if str(row["מי שפיר"]) :
+        value_as_string = row["מי שפיר"]
         observation_concept_id = AMNIOTIC_FLUID_CONCEPT_ID
         match = df_amniotic_fluid.loc[df_amniotic_fluid['מי שפיר'] == row["מי שפיר"]]
         if match.shape[0] > 0 :
-            value_as_concept_id = match.values[0][1]
+            value_as_concept_id = match.values[0][3]
             add_to_data(index , person_id , observation_concept_id , observation_date , observation_datetime ,
                         value_as_number , value_as_string , value_as_concept_id , visit_occurrence_id ,
                         visit_detail_id ,
                         unit_concept_id)
             index += 1
+df_result = pd.DataFrame(data ,
+                         columns=["observation_id" , "person_id" , "observation_concept_id" , "observation_date" ,
+                                  "observation_datetime" , "observation_type_concept_id" ,
+                                  "value_as_number" , "value_as_string" , "value_as_concept_id" ,
+                                  "qualifier_concept_id" , "unit_concept_id" , "provider_id" , "visit_occurrence_id" ,
+                                  "visit_detail_id" ,
+                                  "observation_source_value" , "observation_source_concept_id" , "unit_source_value" ,
+                                  "qualifier_source_value" , "value_source_value" , "observation_event_id" ,
+                                  "obs_event_field_concept_id"])
 
+df_result.to_csv('observation_52.csv' , encoding='utf-8' , index=False)
+data = []
 #### 59 table ###
 source_table = pd.read_csv("59.csv")
 
-EHR_CONCEPT_ID = 32817
-HINGES_START_TIME = 249123005
-FULL_OPENING_TIME = 249160009
-DURATION_OF_PERIOD_1 = 169821004
-FETAL_DEPARTURE_TIME = 397836004
-DURATION_OF_PERIOD_2 = 169822006
-PLACENTAL_EXIT_TIME = 249169005
-DURATION_OF_PERIOD_3 = 169823001
-MEMBRANES_TIME = 289251005
+HINGES_START_TIME = 4089087
+FULL_OPENING_TIME = 4091188
+DURATION_OF_PERIOD_1 = 4015420
+FETAL_DEPARTURE_TIME = 4262313
+DURATION_OF_PERIOD_2 = 4014453
+PLACENTAL_EXIT_TIME = 4090730
+DURATION_OF_PERIOD_3 = 4015161
+MEMBRANES_TIME = 4128843
 
 for index_row , row in source_table.iterrows() :
     if is_exsit_person_id(row['ID_BAZNAT']) == True:
@@ -535,16 +575,31 @@ for index_row , row in source_table.iterrows() :
                     visit_detail_id ,
                     unit_concept_id)
         index += 1
+df_result = pd.DataFrame(data ,
+                         columns=["observation_id" , "person_id" , "observation_concept_id" , "observation_date" ,
+                                  "observation_datetime" , "observation_type_concept_id" ,
+                                  "value_as_number" , "value_as_string" , "value_as_concept_id" ,
+                                  "qualifier_concept_id" , "unit_concept_id" , "provider_id" , "visit_occurrence_id" ,
+                                  "visit_detail_id" ,
+                                  "observation_source_value" , "observation_source_concept_id" , "unit_source_value" ,
+                                  "qualifier_source_value" , "value_source_value" , "observation_event_id" ,
+                                  "obs_event_field_concept_id"])
 
+df_result.to_csv('observation_59.csv' , encoding='utf-8' , index=False)
+data = []
 #### 61 table ###
 source_table = pd.read_csv("61_new.csv")
 
 #######display#####
-display_table = pd.read_csv("display.csv")
-df_display_table = pd.DataFrame(display_table , columns=['display' , 'concept'])
+df_display_table = pd.read_csv("display.csv")
 
 #######delivery way#####
 delivery_way_table = pd.read_csv("delivery_way.csv")
+
+#######death couse#####
+death_cause_table = pd.read_csv("61_Usagi.csv")
+df_death_cause = pd.DataFrame(death_cause_table ,columns=['sourceCode' , 'targetConceptId'])
+
 
 # 1 MINUTE AFGAR
 ONE_MINUTE_APGAR_HEART_RATE = 3027152
@@ -572,8 +627,8 @@ TEN_MINUTE_APGAR_REFLEX_IRRITABILITY = 3022387
 
 # others
 BIRTH_WEIGHT = 4264825
-UMBILICAL_CORD_NORMAL = 289315001
-ABSENT_BLOOD_VESSEL_IN_UMBILICAL_CORD = 302945005
+UMBILICAL_CORD_NORMAL = 4126407
+ABSENT_BLOOD_VESSEL_IN_UMBILICAL_CORD = 4119149
 UMBILICUS_FINDING = 4096860
 PRESENTATION = 4084388
 PATTERN_OF_DELIVERY = 4126390
@@ -589,8 +644,8 @@ for index_row , row in source_table.iterrows() :
         date = datetime.strptime(row["זמן לידה"] , '%m/%d/%Y %H:%M')
     except :
         date = datetime.strptime(row["זמן לידה"] , '%m/%d/%Y %H:%M:%S %p')
-    observation_date = dateT.date()
-    observation_datetime = dateT
+    observation_date = date.date()
+    observation_datetime = date
 
     visit_occurrence_id = is_exsit_visit_occurrence_id(row["Event_baznat"])
     visit_detail_id = ''
@@ -598,10 +653,10 @@ for index_row , row in source_table.iterrows() :
         visit_detail_id = is_exsit_visit_detail_id(visit_occurrence_id)
 
     unit_concept_id = ''
-    value_as_string = ''
     value_as_number = ''
     observation_concept_id = DEATH_DIAGNOSIS
-    match_visit_occurrence = df_terms_table.loc[df_terms_table['sourceCode'] == row["סיבת המוות"]]
+    value_as_string = row["סיבת המוות"]
+    match_visit_occurrence = df_death_cause.loc[df_death_cause['sourceCode'] == row["סיבת המוות"]]
     index_concept = 0
     while match_visit_occurrence.values.shape[0] > index_concept :
         value_as_concept_id = match_visit_occurrence.values[index_concept][1]
@@ -612,6 +667,7 @@ for index_row , row in source_table.iterrows() :
         index += 1
 
     value_as_concept_id = ''
+    value_as_string = ''
     # --------------------- 1 min Apgar ----------------------#
     if not math.isnan(row['אפגר 1 - סכום ערכים']) :
         observation_concept_id = ONE_MINUTE_APGAR_SCORE
@@ -786,10 +842,12 @@ for index_row , row in source_table.iterrows() :
     # display
     if row['מצג'] :
         observation_concept_id = PRESENTATION
+        value_as_string = row['מצג']
         value_as_number = ''
         match_display = df_display_table.loc[df_display_table['display'] == row['מצג']]
         if match_display.shape[0] > 0 :
-            value_as_concept_id = match_display.values[0][1]
+            value_as_concept_id = match_display.values[0][3]
+
             add_to_data(index , person_id , observation_concept_id , observation_date , observation_datetime ,
                         value_as_number , value_as_string , value_as_concept_id , visit_occurrence_id ,
                         visit_detail_id ,
@@ -802,21 +860,21 @@ for index_row , row in source_table.iterrows() :
         observation_concept_id = PATTERN_OF_DELIVERY
         match_delivery = delivery_way_table.loc[delivery_way_table['delivery_way'] == row['אופן הלידה']]
         if match_delivery.shape[0] > 0 :
-            value_as_concept_id = match_delivery.values[0][2]
+            value_as_concept_id = match_delivery.values[0][3]
             add_to_data(index , person_id , observation_concept_id , observation_date , observation_datetime ,
                         value_as_number , value_as_string , value_as_concept_id , visit_occurrence_id ,
                         visit_detail_id ,
                         unit_concept_id)
             index += 1
 
-df_result = pd.DataFrame(data ,
-                         columns=["observation_id" , "person_id" , "observation_concept_id" , "observation_date" ,
-                                  "observation_datetime" , "observation_type_concept_id" ,
-                                  "value_as_number" , "value_as_string" , "value_as_concept_id" ,
-                                  "qualifier_concept_id" , "unit_concept_id" , "provider_id" , "visit_occurrence_id" ,
+df_result = pd.DataFrame(data,
+                         columns=["observation_id" , "person_id" , "observation_concept_id", "observation_date",
+                                  "observation_datetime", "observation_type_concept_id",
+                                  "value_as_number", "value_as_string", "value_as_concept_id",
+                                  "qualifier_concept_id", "unit_concept_id" , "provider_id", "visit_occurrence_id",
                                   "visit_detail_id" ,
-                                  "observation_source_value" , "observation_source_concept_id" , "unit_source_value" ,
-                                  "qualifier_source_value" , "value_source_value" , "observation_event_id" ,
+                                  "observation_source_value", "observation_source_concept_id", "unit_source_value",
+                                  "qualifier_source_value", "value_source_value", "observation_event_id",
                                   "obs_event_field_concept_id"])
 
-df_result.to_csv('observation.csv' , encoding='utf-8' , index=False)
+df_result.to_csv('observation_61.csv' , encoding='utf-8' , index=False)

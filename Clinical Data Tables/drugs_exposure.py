@@ -11,11 +11,23 @@ drugs_and_concepts_numbers = []
 person_table = pd.read_csv('person.csv')
 visit_detail_table = pd.read_csv('visit_detail.csv')
 visit_occurrence_table = pd.read_csv('visit_occurrence.csv')
+concepts_table = pd.read_csv('concept_snomed.csv')
+
+def change_code_to_id(code):
+    code=int(code)
+    match_concepts = concepts_table.loc[concepts_table['concept_code'] == code]
+    if match_concepts.shape[0] > 0:
+        concept_id = match_concepts.values[0][0]
+        return concept_id
+
+
 for drug_text in drug_cols:
     if drug_text == "Drug_Name" or drug_text == "counts":
         continue
     else:
-        names_and_concept_list = res = re.findall(r'\w+', drug_text)
+        names_and_concept_list = re.findall(r'\w+', drug_text)
+        concept_id = change_code_to_id(names_and_concept_list[-1])
+        names_and_concept_list[-1]=str(concept_id)
         drugs_and_concepts_numbers.append(names_and_concept_list)
 
 
