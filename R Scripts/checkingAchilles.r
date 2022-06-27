@@ -23,20 +23,30 @@ achilles(connectionDetails,
   cdmDatabaseSchema = cdmDbSchema,
   resultsDatabaseSchema = "results",
   outputFolder = "./Output",
+  optimizeAtlasCache = TRUE,
   cdmVersion = cdmVersion
 )
 
 
-# exportToJson(connectionDetails,
-#              cdmDatabaseSchema = cdmDbSchema,
-#              resultsDatabaseSchema = "results",
-#              outputPath = "achillesOut")
+exportToJson(connectionDetails,
+             cdmDatabaseSchema = cdmDbSchema,
+             resultsDatabaseSchema = "results",
+             outputPath = "achillesOut")
+
+# listMissingAnalyses(connectionDetails = connectionDetails,
+#                                resultsDatabaseSchema = "results")
 
 
 
-createIndices(
-  connectionDetails = connectionDetails,
-  resultsDatabaseSchema = "results",
-  outputFolder = "./Output"
-)
+# runMissingAnalyses(
+#   connectionDetails = connectionDetails,
+#   cdmDatabaseSchema = cdmDbSchema,
+#   resultsDatabaseSchema = "results"
+# )
+
+# createIndices(
+#   connectionDetails = connectionDetails,
+#   resultsDatabaseSchema = "results",
+#   outputFolder = "./Output"
+# )
 
