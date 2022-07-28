@@ -47,7 +47,8 @@ for index_row, row in source_table.iterrows():
     condition_concept_id = 0
     row_for_concept_id = concept_Yishay_table.loc[concept_Yishay_table['sourceCode'] == row[3]]
     if not row_for_concept_id.empty:
-        condition_concept_id = row_for_concept_id['targetConceptId'].values[0]
+        if row_for_concept_id['targetDomainId'].values[0] == 'Condition':
+            condition_concept_id = row_for_concept_id['targetConceptId'].values[0]
 
     row_for_date = table_89_for_date.loc[table_89_for_date['ID_BAZNAT'] == person_id]
     date_start = datetime.strptime(

@@ -133,9 +133,16 @@ dmypy.json
 
 observation.csv
 table6.csv
-CONCEPT_ICD9.csv
 new_table.csv
 table89.csv
 values to condition table eng only.csv
 valuse to condition without icd9.csv
 .gitignore
+try.py
+concepts_icd9.csv
+CONCEPT.csv
+concept_relationship.csv
+Output/
+csv_to_upload
+AchillesWeb-master
+
