@@ -24,7 +24,7 @@
 
 •	Download the scripts that define the tables in the appropriate version and move them to a folder we created on the remote server.
 
-•	Performing the steps given in Git: https://github.com/MIT-LCP/mimic-omop/tree/master/omop/build-omop/postgresql using Linux commands on the remote server:
+•	Create the tables. See https://github.com/MIT-LCP/mimic-omop/tree/master/omop/build-omop/postgresql. Execute it from R on the remote server:
   
     •	Connecting to a database located on the PostgreSQL server 
   
