@@ -26,6 +26,7 @@ data = []
 index = 1
 
 LABORATORY = 4135110  # טיפול מיוחד בילוד
+EHR_TYPE_CONCEPT_ID = 32817 # OMOP4976890	EHR
 
 measurement_time = ''
 operator_concept_id = 0
@@ -349,6 +350,126 @@ for index_row, row in source_table.iterrows():
 
     index+=1
 
+
+##########
+# 61.csv #
+##########
+# table 61 - 
+'''
+0	ID_BAZNAT
+1	Event_baznat
+2	מספר ילוד
+3	זמן לידה
+4	משקל
+5	מצג
+6	אפגר 1 - סכום ערכים
+7	אפגר 1 - דופק
+8	אפגר 1 - נשימה
+9	אפגר 1 - צבע
+10	אפגר 1 - טונוס
+11	אפגר 1 - תגובה
+12	אפגר 5 - סכום ערכים
+13	אפגר 5 - דופק
+14	אפגר 5 - נשימה
+15	אפגר 5 - צבע
+16	אפגר 5 - טונוס
+17	אפגר 5 - תגובה
+18	אפגר 10 - סכום ערכים
+19	אפגר 10 - דופק
+20	אפגר 10 - נשימה
+21	אפגר 10 - צבע
+22	אפגר 10 - טונוס
+23	אפגר 10 - תגובה
+24	אופן הלידה
+25	לידת מת
+26	סוג מוות
+27	סיבת המוות
+28	מוות - הערות
+29	מספר ידון יולדת
+30	חבל טבור עם 3 כלי דם
+31	נלקח דם
+32	דרך חילוץ
+33	הודעת לידה
+34	מין
+35	Record_Date
+'''
+source_table = pd.read_csv("61.csv")
+
+birth_weight_concept_id = 4264825
+ONE_MINUTE_APGAR_SCORE_concept_id= 3016704
+FIVE_MINUTE_APGAR_SCORE_concept_id = 3004221
+TEN_MINUTE_APGAR_SCORE_concept_id = 3016162
+
+for index_row, row in source_table.iterrows():
+    # check if person exists in person
+    person_id = row[0]
+    match_person = person_table.loc[person_table['person_id'] == person_id]
+    if match_person.empty:
+        continue
+
+    measurement_id = index
+    measurement_datetime = row[3]
+    #measurement_date = 0
+
+    match_visit_occurrence = visit_occurrence_table.loc[
+        visit_occurrence_table['visit_occurrence_id'] == row["Event_baznat"]]
+    if match_visit_occurrence.shape[0] > 0:
+        visit_occurrence_id = row["Event_baznat"]
+    else:
+        visit_occurrence_id = ''
+
+    match_visit_detail = visit_detail_table.loc[
+        visit_detail_table['visit_occurrence_id'] == visit_occurrence_id]
+    visit_detail_id=''    
+    if not match_visit_detail.empty:
+        try:
+            visit_detail_id = match_visit_detail["visit_detail_id"].values[0]
+        except:
+            visit_detail_id=''  
+
+    try:
+        str_date = str(row[3])
+        date_m = datetime.strptime(str_date, '%d/%m/%Y %H:%M:%S')
+        measurement_date = date_m.date()
+        measurement_datetime = date_m
+    except:
+        date_m = datetime.strptime(str_date, '%d/%m/%Y %H:%M')
+        measurement_date = date_m.date()
+        measurement_datetime = date_m
+
+    measurement_type_concept_id = EHR_TYPE_CONCEPT_ID #NEWBORN_NURSERY_UNIT
+
+    value_as_concept_id = ''
+
+    birth_weight_value = row[4]
+    apgar_1_value = row[6]
+    apgar_5_value = row[12]
+    apgar_10_value = row[18]
+
+    value_as_number = ''
+
+    concept_ids = (birth_weight_concept_id, ONE_MINUTE_APGAR_SCORE_concept_id, FIVE_MINUTE_APGAR_SCORE_concept_id, TEN_MINUTE_APGAR_SCORE_concept_id)
+    values = (birth_weight_value, apgar_1_value, apgar_5_value, apgar_10_value)
+    
+    for value_as_number, measurement_concept_id in zip(concept_ids, values):
+        measurement_id = index
+        measurement_source_value = value_as_number
+        measurement_source_concept_id = 0
+
+        unit_source_value = ""
+        value_source_value = value_as_number
+
+        measurement_event_id = ""
+        meas_event_field_concept_id = ""
+        unit_source_concept_id = ""
+
+        data.append([measurement_id, person_id, measurement_concept_id, measurement_date, measurement_datetime,
+                    measurement_time,measurement_type_concept_id,operator_concept_id,value_as_number,
+                    value_as_concept_id,unit_concept_id,range_low,range_high,provider_id,visit_occurrence_id,
+                    visit_detail_id,measurement_source_value,measurement_source_concept_id,unit_source_value,
+                    unit_source_concept_id,value_source_value,measurement_event_id,meas_event_field_concept_id])
+
+        index+=1
 
 
 
