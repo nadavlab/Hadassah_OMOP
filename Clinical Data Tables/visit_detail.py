@@ -27,7 +27,7 @@ data=[]
 index = 1
 
 ### Concepts ####
-INPATIENT_VISIT_CONCEPT_ID = 4140387
+INPATIENT_VISIT_CONCEPT_ID = 9201 # Inpatient Visit, according to: https://ohdsi.github.io/CommonDataModel/cdm53.html#VISIT_DETAIL
 EHR_CONCEPT_ID = 32817
 
 for index_row, row in source_table.iterrows():
@@ -46,14 +46,14 @@ for index_row, row in source_table.iterrows():
     visit_detail_id = index
     visit_detail_concept_id = INPATIENT_VISIT_CONCEPT_ID
     visit_detail_type_concept_id = EHR_CONCEPT_ID
-    visit_detail_source_concept_id = EHR_CONCEPT_ID
+    visit_detail_source_concept_id = '' # If the VISIT_DETAIL_SOURCE_VALUE is coded in the source data using an OMOP supported vocabulary put the concept id representing the source value here.
 
-    date_start = datetime.strptime(row["Department_Entry_Date"] , '%d/%m/%Y %H:%M')
+    date_start = datetime.strptime(row["Department_Entry_Date"] , '%Y-%m-%dT%H:%M:%S')
     visit_detail_start_date = date_start.date()
     if date_start :
         visit_detail_start_datetime = date_start
-    if row[5] !='-1':
-        date_end = datetime.strptime(row["Department_Exit_Date"] , '%d/%m/%Y %H:%M')
+    if row.iloc[5] and not pd.isna(row.iloc[5]) and row.iloc[5] !='-1':
+        date_end = datetime.strptime(row["Department_Exit_Date"] , '%Y-%m-%dT%H:%M:%S')
         visit_detail_end_date = date_end.date()
         if date_end:
             visit_detail_end_datetime = date_end
@@ -62,8 +62,8 @@ for index_row, row in source_table.iterrows():
         if match_visit_occurrence.values.size != 0:
             index_date = 0
             while match_visit_occurrence["HOSP_ENTRY_DATE"].size > index_date and type(match_visit_occurrence["HOSP_EXIT_DATE"].values[index_date]) != float :
-                date_start_89 = datetime.strptime(match_visit_occurrence["HOSP_ENTRY_DATE"].values[index_date] , '%d/%m/%Y %H:%M:%S')
-                date_end_89 = datetime.strptime(match_visit_occurrence["HOSP_EXIT_DATE"].values[index_date] , '%d/%m/%Y %H:%M:%S')
+                date_start_89 = datetime.strptime(match_visit_occurrence["HOSP_ENTRY_DATE"].values[index_date] , '%Y-%m-%dT%H:%M:%S')
+                date_end_89 = datetime.strptime(match_visit_occurrence["HOSP_EXIT_DATE"].values[index_date] , '%Y-%m-%dT%H:%M:%S')
                 if date_start_89 <= date_start<= date_end_89:
                     visit_detail_end_date = date_end_89.date()
                     visit_detail_end_datetime = date_end_89
@@ -78,7 +78,7 @@ for index_row, row in source_table.iterrows():
         care_site_id = match_care_site.values[0][0]
 
     provider_id = ''
-    visit_detail_source_value = ''
+    visit_detail_source_value = row.iloc[3] # Department
     admitted_from_concept_id = 0
     admitted_from_source_value = ''
     discharged_to_source_value = ''
